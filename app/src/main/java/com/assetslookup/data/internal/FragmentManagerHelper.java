@@ -21,7 +21,7 @@ public class FragmentManagerHelper {
 
     public void attach(Class<? extends Fragment> newClass) {
         try {
-            detachFragments();
+            hideFragments();
             Constructor<? extends Fragment> constructor = newClass.getConstructor();
             Fragment fragment = constructor.newInstance();
             Fragment searchFragment = fragmentManager.findFragmentByTag(newClass.getName());
@@ -39,7 +39,7 @@ public class FragmentManagerHelper {
 
     public void attach(Class<? extends Fragment> newClass, Bundle bundle) {
         try {
-            detachFragments();
+            hideFragments();
             Constructor<? extends Fragment> constructor = newClass.getConstructor();
             Fragment fragment = constructor.newInstance();
             Fragment searchFragment = fragmentManager.findFragmentByTag(newClass.getName());
@@ -68,7 +68,7 @@ public class FragmentManagerHelper {
         return true;
     }
 
-    private void detachFragments() {
+    private void hideFragments() {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         for (Fragment fragment : fragmentManager.getFragments()) {
             if(fragment.isVisible()) {

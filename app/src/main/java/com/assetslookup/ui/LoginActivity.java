@@ -15,7 +15,7 @@ import com.assetslookup.data.internal.APIError;
 import com.assetslookup.data.internal.ErrorUtils;
 import com.assetslookup.data.network.IAssetsService;
 import com.assetslookup.data.network.AssetsService;
-import com.assetslookup.ui.assets.AssetsHomeActivity;
+import com.assetslookup.ui.assets.AssetsActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToAssetsHome() {
-        Intent it = new Intent(this, AssetsHomeActivity.class);
+        Intent it = new Intent(this, AssetsActivity.class);
         startActivity(it);
     }
 

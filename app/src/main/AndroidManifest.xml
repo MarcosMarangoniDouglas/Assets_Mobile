@@ -16,7 +16,7 @@
         android:roundIcon="@drawable/ic_home_black_24dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.assetslookup.ui.assets.AssetsHomeActivity" />
+        <activity android:name="com.assetslookup.ui.assets.AssetsActivity" />
         <activity android:name="com.assetslookup.ui.ForgotPasswordActivity" />
         <activity android:name="com.assetslookup.ui.SignUpActivity" />
         <activity android:name="com.assetslookup.ui.LoginActivity">
