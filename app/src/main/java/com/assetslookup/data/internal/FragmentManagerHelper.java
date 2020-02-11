@@ -9,7 +9,7 @@ import android.util.Log;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
-public class FragmentManagerHelper implements IFragmentManagerHelper{
+public class FragmentManagerHelper {
 
     private FragmentManager fragmentManager;
     private int fragmentContainer;
@@ -19,7 +19,6 @@ public class FragmentManagerHelper implements IFragmentManagerHelper{
         this.fragmentContainer = fragmentContainer;
     }
 
-    @Override
     public void attach(Class<? extends Fragment> newClass) {
         try {
             detachFragments();
@@ -38,7 +37,6 @@ public class FragmentManagerHelper implements IFragmentManagerHelper{
         }
     }
 
-    @Override
     public void attach(Class<? extends Fragment> newClass, Bundle bundle) {
         try {
             detachFragments();
@@ -58,7 +56,6 @@ public class FragmentManagerHelper implements IFragmentManagerHelper{
         }
     }
 
-    @Override
     public boolean goBack() {
         List<Fragment> fragments = fragmentManager.getFragments();
         if(fragments.size() <= 1) return false;

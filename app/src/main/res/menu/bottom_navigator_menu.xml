@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/userMenu"
+        android:id="@+id/ASSETS"
+        android:icon="@drawable/ic_attach_money_24dp"
+        android:title="Assets" />
+    <item
+        android:id="@+id/GOALS"
+        android:icon="@drawable/ic_timeline_black_24dp"
+        android:title="Goals" />
+    <item
+        android:id="@+id/PROFILE"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/users_menu" />
-    <item
-        android:id="@+id/productMenu"
-        android:icon="@drawable/ic_box"
-        android:title="@string/products_menu" />
-    <item
-        android:id="@+id/ordersMenu"
-        android:icon="@drawable/ic_attach_money_black_24dp"
-        android:title="@string/summaryMenu" />
+        android:title="Profile" />
 </menu>

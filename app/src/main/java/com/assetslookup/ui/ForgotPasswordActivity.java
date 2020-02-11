@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -18,24 +19,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ResetPasswordActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity
+  implements View.OnClickListener{
 
   IAssetsService assetsService = AssetsService.getInstance().create(IAssetsService.class);
 
-  EditText editPassword;
-  EditText editRepeatPassword;
+  EditText editUsername;
   ProgressBar progressBar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_forgot_password);
-
-    editPassword = findViewById(R.id.editPassword);
-    editRepeatPassword = findViewById(R.id.editRepeatPassword);
-
+    editUsername = findViewById(R.id.editUsername);
     progressBar = new ProgressBar(this);
-
     Toolbar toolbar = findViewById(R.id.forgotPasswordToolBar);
     toolbar.setNavigationOnClickListener(new View.OnClickListener() {
       @Override
@@ -45,13 +42,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
     });
   }
 
-  public void onResetPassword(View view) {
-    String password = editPassword.getText().toString();
-    String repeatPassword = editRepeatPassword.getText().toString();
-
-    if(!password.equals(repeatPassword)) {
-      Toast.makeText(this, "The passwords doesn't match", Toast.LENGTH_SHORT).show();
-    }
+  @Override
+  public void onClick(View view) {
     progressBar.setVisibility(View.VISIBLE);
   }
 }

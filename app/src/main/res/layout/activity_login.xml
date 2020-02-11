@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".ui.SignInActivity">
+    tools:context=".ui.LoginActivity">
 
     <android.support.constraint.Guideline
       android:id="@+id/logoGuideline"
@@ -151,7 +151,7 @@
       android:layout_height="52dp"
       android:layout_marginTop="136dp"
       android:background="@color/colorPrimaryDark"
-      android:text="@string/btnForgotPassword"
+      android:text="@string/btnMenuForgotPassword"
       android:textColor="@android:color/white"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.53"

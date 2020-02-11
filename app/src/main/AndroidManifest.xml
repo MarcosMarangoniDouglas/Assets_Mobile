@@ -16,10 +16,10 @@
         android:roundIcon="@drawable/ic_home_black_24dp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.assetslookup.ui.admin.AdminHomeActivity" />
-        <activity android:name="com.assetslookup.ui.ResetPasswordActivity" />
+        <activity android:name="com.assetslookup.ui.assets.AssetsHomeActivity" />
+        <activity android:name="com.assetslookup.ui.ForgotPasswordActivity" />
         <activity android:name="com.assetslookup.ui.SignUpActivity" />
-        <activity android:name="com.assetslookup.ui.SignInActivity">
+        <activity android:name="com.assetslookup.ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -8,7 +8,7 @@ import android.util.Log;
 
 import java.lang.reflect.Constructor;
 
-public class BottomNavigatorManager implements IFragmentManagerHelper {
+public class BottomNavigatorManager {
 
   private FragmentManager fragmentManager;
   private int fragmentContainer;
@@ -18,7 +18,6 @@ public class BottomNavigatorManager implements IFragmentManagerHelper {
     this.fragmentContainer = fragmentContainer;
   }
 
-  @Override
   public void attach(Class<? extends Fragment> fragment) {
     try {
       detachFragments();
@@ -37,7 +36,6 @@ public class BottomNavigatorManager implements IFragmentManagerHelper {
     }
   }
 
-  @Override
   public void attach(Class<? extends Fragment> fragment, Bundle bundle) {
     try {
       detachFragments();
@@ -58,7 +56,6 @@ public class BottomNavigatorManager implements IFragmentManagerHelper {
     }
   }
 
-  @Override
   public boolean goBack() {
     fragmentManager.popBackStack();
     return true;

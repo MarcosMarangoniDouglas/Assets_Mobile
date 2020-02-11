@@ -1,10 +1,6 @@
 package com.assetslookup.ui;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,15 +9,19 @@ import android.widget.Toast;
 
 import com.assetslookup.R;
 import com.assetslookup.data.db.AssetsDatabase;
+import com.assetslookup.data.db.entities.Token;
 import com.assetslookup.data.db.entities.User;
+import com.assetslookup.data.internal.APIError;
+import com.assetslookup.data.internal.ErrorUtils;
 import com.assetslookup.data.network.IAssetsService;
 import com.assetslookup.data.network.AssetsService;
+import com.assetslookup.ui.assets.AssetsHomeActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignInActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     AssetsDatabase assetsDatabase;
     IAssetsService assetsService =
@@ -33,7 +33,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_login);
         assetsDatabase = AssetsDatabase.getAppDatabase(this.getApplicationContext());
 
         editUsername = findViewById(R.id.editUsername);
@@ -43,15 +43,15 @@ public class SignInActivity extends AppCompatActivity {
         findViewById(R.id.imgHeader).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editUsername.setText("ww.meta@chemistry.org");
-                editPasssword.setText("1234");
+                editUsername.setText("cesar.reboucas@gmail.com");
+                editPasssword.setText("teste1234");
             }
         });
 
     }
 
-    public void onSignUp(View view) {
-        Intent it = new Intent(this, SignUpActivity.class);
+    private void goToAssetsHome() {
+        Intent it = new Intent(this, AssetsHomeActivity.class);
         startActivity(it);
     }
 
@@ -64,31 +64,39 @@ public class SignInActivity extends AppCompatActivity {
         user.setPassword(password);
 
         assetsDatabase.userDao().deleteAllUsers();
-        assetsService.login(user).enqueue(new Callback<User>() {
+        assetsService.login(user).enqueue(new Callback<Token>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<Token> call, Response<Token> response) {
                 if(response.code() == 200) {
                     if(response.body() != null) {
-                        User loggedUser = response.body();
-                        assetsDatabase.userDao().insertUser(loggedUser);
-                        //AssetsService.setToken(response.body().token);
+                        Token token = response.body();
+                        AssetsService.setToken(token.getToken());
+                        Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
+                        goToAssetsHome();
+
                     }
                 } else {
-                    Toast.makeText(getBaseContext(), "Username or password incorrect",
-                            Toast.LENGTH_LONG).show();
+                    APIError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(LoginActivity.this, apiError.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(getBaseContext(), "Unable to reach the server",
+            public void onFailure(Call<Token> call, Throwable t) {
+                Toast.makeText(getBaseContext(), t.getMessage(),
                         Toast.LENGTH_LONG).show();
             }
         });
     }
 
+    public void onSignUp(View view) {
+        Intent it = new Intent(this, SignUpActivity.class);
+        startActivity(it);
+    }
+
+
     public void onForgotPassword(View view) {
-        Intent it = new Intent(this, ResetPasswordActivity.class);
+        Intent it = new Intent(this, ForgotPasswordActivity.class);
         startActivity(it);
     }
 }

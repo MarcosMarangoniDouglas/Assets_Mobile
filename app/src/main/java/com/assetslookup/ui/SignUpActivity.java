@@ -4,13 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.assetslookup.R;
 import com.assetslookup.data.db.entities.User;
+import com.assetslookup.data.internal.APIError;
+import com.assetslookup.data.internal.ErrorUtils;
 import com.assetslookup.data.network.IAssetsService;
 import com.assetslookup.data.network.AssetsService;
 
@@ -22,19 +22,20 @@ public class SignUpActivity extends AppCompatActivity{
 
   IAssetsService warehouseService = AssetsService.getInstance().create(IAssetsService.class);
 
-  EditText editPassword;
+  EditText editFirstName;
+  EditText editLastName;
   EditText editUsername;
-  EditText editName;
-
+  EditText editPassword;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_sign_up);
+    setContentView(R.layout.activity_signup);
 
     Toolbar toolbar = findViewById(R.id.signUpToolBar);
 
-    editName = findViewById(R.id.editName);
+    editFirstName = findViewById(R.id.editFirstName);
+    editLastName = findViewById(R.id.editLastName);
     editUsername = findViewById(R.id.editUsername);
     editPassword = findViewById(R.id.editPassword);
 
@@ -44,30 +45,30 @@ public class SignUpActivity extends AppCompatActivity{
         finish();
       }
     });
-
   }
 
   public void onSignUp(View view) {
     String username = editUsername.getText().toString();
     String password = editPassword.getText().toString();
-    String name = editName.getText().toString();
+    String firstName = editFirstName.getText().toString();
+    String lastName = editLastName.getText().toString();
 
-    //TODO handle unassigned and noImage
-    //User user = new User(name, username, password, "client", "unAssigned", "", "", "NoImage", "");
-/*    warehouseService.createUser(user).enqueue(new Callback<User>() {
+    User user = new User(username, firstName, lastName, password);
+    warehouseService.signUp(user).enqueue(new Callback<User>() {
       @Override
       public void onResponse(Call<User> call, Response<User> response) {
         if(response.code() == 200) {
           Toast.makeText(SignUpActivity.this, "USER CREATED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
         } else {
-          Toast.makeText(SignUpActivity.this, "Your credentials are wrong", Toast.LENGTH_LONG).show();
+          APIError apiError = ErrorUtils.parseError(response);
+          Toast.makeText(SignUpActivity.this, apiError.message(), Toast.LENGTH_LONG).show();
         }
       }
 
       @Override
       public void onFailure(Call<User> call, Throwable t) {
-        Toast.makeText(SignUpActivity.this, "The server is down", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SignUpActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
       }
-    });*/
+    });
   }
 }
