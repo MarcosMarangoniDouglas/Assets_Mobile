@@ -1,6 +1,8 @@
 package com.assetslookup.data.network;
 
 
+import com.assetslookup.data.db.entities.Asset;
+import com.assetslookup.data.db.entities.Assets;
 import com.assetslookup.data.db.entities.Token;
 import com.assetslookup.data.db.entities.User;
 
@@ -8,13 +10,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.HTTP;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface IAssetsService {
@@ -33,5 +30,11 @@ public interface IAssetsService {
     Call<Void> resetPassword(@Body User user);
     // =========================
 
+    // ASSETS ENDPOINTS
+    @GET("/api/assets")
+    Call<Assets> getAllAssets();
 
+    @GET("/api/asset/{assetId}")
+    Call<Asset> getAsset(@Path("assetId") String assetId);
+    // =========================
 }

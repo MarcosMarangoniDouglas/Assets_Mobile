@@ -13,7 +13,7 @@ public class ApiKeyInterceptor implements Interceptor {
 
     public ApiKeyInterceptor(String token) {
         if(token != null) this.token = token;
-        this.token = "";
+        else this.token = "";
     }
 
     @Override

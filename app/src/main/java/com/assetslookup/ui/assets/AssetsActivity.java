@@ -22,12 +22,15 @@ public class AssetsActivity extends AppCompatActivity implements BottomNavigatio
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigatorManager = new BottomNavigatorManager(getSupportFragmentManager(), R.id.fragmentContainer);
+        // FIRST SCREEN
+        bottomNavigatorManager.attach(AssetsContainerFragment.class);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.ASSETS:
+                bottomNavigatorManager.attach(AssetsContainerFragment.class);
                 break;
             case R.id.GOALS:
                 break;

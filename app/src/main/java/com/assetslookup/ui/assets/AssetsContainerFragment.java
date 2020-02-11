@@ -17,17 +17,13 @@ import com.assetslookup.data.internal.IFragmentInteraction;
 
 public class AssetsContainerFragment extends Fragment
   implements IFragmentInteraction {
-  private static final String ARG_PARAM1 = "param1";
   FragmentManagerHelper fragmentManagerHelper;
-
-  private String mParam1;
 
   public AssetsContainerFragment() { }
 
   public static AssetsContainerFragment newInstance() {
     AssetsContainerFragment fragment = new AssetsContainerFragment();
     Bundle args = new Bundle();
-    //args.putString(ARG_PARAM1, param1);
     fragment.setArguments(args);
     return fragment;
   }
@@ -35,10 +31,6 @@ public class AssetsContainerFragment extends Fragment
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (getArguments() != null) {
-      //mParam1 = getArguments().getString(ARG_PARAM1);
-    }
-
     fragmentManagerHelper = new FragmentManagerHelper(getChildFragmentManager(), R.id.assetsFragmentContainer);
   }
 
@@ -52,6 +44,7 @@ public class AssetsContainerFragment extends Fragment
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    fragmentManagerHelper.attach(AssetsListFragment.class);
   }
 
   @Override

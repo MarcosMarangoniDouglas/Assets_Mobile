@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         editUsername = findViewById(R.id.editUsername);
         editPasssword = findViewById(R.id.editPassword);
 
-        // TODO REMOVE LATER
         findViewById(R.id.imgHeader).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

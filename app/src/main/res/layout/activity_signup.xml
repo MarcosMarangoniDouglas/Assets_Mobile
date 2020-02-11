@@ -14,7 +14,7 @@
     android:minHeight="?attr/actionBarSize"
     android:background="@android:color/transparent"
     app:title="Sign up"
-    app:titleTextAppearance="@style/ActionBar.nameText"
+    app:titleTextAppearance="@style/transparentToolbarTheme"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
