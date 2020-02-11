@@ -7,7 +7,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
-        applicationId "com.warehousemanager"
+        applicationId "com.assetslookup"
         minSdkVersion 20
         targetSdkVersion 28
         versionCode 1
