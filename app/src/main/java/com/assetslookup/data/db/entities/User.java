@@ -11,12 +11,9 @@ import java.io.Serializable;
 
 @Entity(tableName = "user_table")
 public class User implements Serializable {
-
-  private static final long CURRENT_USER = 0;
-
   @SerializedName("id")
   @PrimaryKey(autoGenerate = false)
-  private Long id = CURRENT_USER;
+  private Long id;
 
   @SerializedName("username")
   private String username;
@@ -34,10 +31,19 @@ public class User implements Serializable {
   public User() { }
 
   public User(String username, String firstName, String lastName, String password) {
+    this.id = 0L;
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.password = password;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getUsername() {

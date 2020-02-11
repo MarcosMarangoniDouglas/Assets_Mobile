@@ -1,8 +1,8 @@
 <resources>
-  <string name="app_name">WarehouseManager</string>
+  <string name="app_name">AssetsLookUP</string>
   <string name="storeimg">StoreImg</string>
-  <string name="signInWarehouse">Warehouses</string>
-  <string name="signInManager">M A N A G E R</string>
+  <string name="signInHeaderTitle">ASSETS</string>
+  <string name="signInHeaderSubtitle">L O O K&#160;&#160;U P !</string>
   <string name="txtUsername">U s e r n a m e</string>
   <string name="txtPassword">P a s s w o r d</string>
   <string name="btnSignIn">S I G N&#160;&#160;I N</string>

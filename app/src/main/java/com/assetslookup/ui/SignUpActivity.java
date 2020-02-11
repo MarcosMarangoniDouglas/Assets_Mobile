@@ -53,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity{
     String name = editName.getText().toString();
 
     //TODO handle unassigned and noImage
-    User user = new User(name, username, password, "client", "unAssigned", "", "", "NoImage", "");
+    //User user = new User(name, username, password, "client", "unAssigned", "", "", "NoImage", "");
 /*    warehouseService.createUser(user).enqueue(new Callback<User>() {
       @Override
       public void onResponse(Call<User> call, Response<User> response) {

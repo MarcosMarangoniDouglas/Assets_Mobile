@@ -18,7 +18,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:navigationIcon="@drawable/back_arrow_clipart" />
+    app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
 
   <android.support.constraint.Guideline
     android:id="@+id/fieldsGuideline"

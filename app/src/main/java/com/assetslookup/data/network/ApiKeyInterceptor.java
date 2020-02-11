@@ -12,7 +12,8 @@ public class ApiKeyInterceptor implements Interceptor {
     private String token;
 
     public ApiKeyInterceptor(String token) {
-        this.token = token;
+        if(token != null) this.token = token;
+        this.token = "";
     }
 
     @Override

@@ -52,29 +52,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
     if(!password.equals(repeatPassword)) {
       Toast.makeText(this, "The passwords doesn't match", Toast.LENGTH_SHORT).show();
     }
-
-    User user = new User("", "", password, "client", "", "", "", "", "");
     progressBar.setVisibility(View.VISIBLE);
-    assetsService.editUserPassword(user).enqueue(new Callback<Void>() {
-      @Override
-      public void onResponse(Call<Void> call, Response<Void> response) {
-        if(response.isSuccessful()) {
-          Snackbar.make(
-            findViewById(android.R.id.content),
-            "User password changed successfully!",
-            Snackbar.LENGTH_LONG
-          ).show();
-        } else {
-          Toast.makeText(ResetPasswordActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-        }
-        progressBar.setVisibility(View.INVISIBLE);
-      }
-
-      @Override
-      public void onFailure(Call<Void> call, Throwable t) {
-        Toast.makeText(ResetPasswordActivity.this, "Failed to contact the server", Toast.LENGTH_SHORT).show();
-        progressBar.setVisibility(View.INVISIBLE);
-      }
-    });
   }
 }

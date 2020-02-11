@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.assetslookup.R;
@@ -37,16 +36,11 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         assetsDatabase = AssetsDatabase.getAppDatabase(this.getApplicationContext());
 
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
-          == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(SignInActivity.this, new String[] {Manifest.permission.CAMERA}, BarcodeScannerFragment.mCameraId);
-        }
-
         editUsername = findViewById(R.id.editUsername);
         editPasssword = findViewById(R.id.editPassword);
 
         // TODO REMOVE LATER
-        findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.imgHeader).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editUsername.setText("ww.meta@chemistry.org");
