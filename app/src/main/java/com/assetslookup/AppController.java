@@ -12,3 +12,5 @@ public class AppController extends Application {
     AssetsDatabase.getAppDatabase(getApplicationContext());
   }
 }
+
+//Andre Teste
