@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="#333A40"
     tools:context=".ui.LoginActivity">
 
     <android.support.constraint.Guideline
@@ -23,7 +23,9 @@
         android:contentDescription="@string/storeimg"
         app:layout_constraintStart_toEndOf="@+id/txtHeaderSubtitle"
         app:layout_constraintTop_toTopOf="@+id/logoGuideline"
-        app:srcCompat="@drawable/ic_assets" />
+        app:srcCompat="@drawable/ic_assets"
+
+        />
 
     <TextView
       android:id="@+id/txtHeaderTitle"
@@ -120,16 +122,16 @@
       app:layout_constraintGuide_percent="0.62" />
 
     <Button
-      android:id="@+id/btnSignIn"
-      android:layout_width="325dp"
-      android:layout_height="52dp"
-      android:background="@color/colorPrimaryDark"
-      android:text="@string/btnSignIn"
-      android:textColor="@android:color/white"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/guideline3"
-      android:onClick="onSignIn"/>
+        android:id="@+id/btnSignIn"
+        android:layout_width="325dp"
+        android:layout_height="52dp"
+        android:background="@drawable/button_shape"
+        android:onClick="onSignIn"
+        android:text="@string/btnSignIn"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <Button
       android:id="@+id/btnSignUp"
@@ -137,9 +139,9 @@
       android:layout_width="325dp"
       android:layout_height="52dp"
       android:layout_marginTop="68dp"
-      android:background="@color/colorPrimaryDark"
       android:text="@string/btnSignUp"
       android:textColor="@android:color/white"
+        android:background="@drawable/button_shape"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.53"
       app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +152,7 @@
       android:layout_width="325dp"
       android:layout_height="52dp"
       android:layout_marginTop="136dp"
-      android:background="@color/colorPrimaryDark"
+        android:background="@drawable/button_shape"
       android:text="@string/btnMenuForgotPassword"
       android:textColor="@android:color/white"
       app:layout_constraintEnd_toEndOf="parent"
