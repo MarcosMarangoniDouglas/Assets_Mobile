@@ -1,7 +1,9 @@
 package com.assetslookup.ui.assets;
 
 import android.content.Context;
+import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.assetslookup.R;
 import com.assetslookup.data.db.entities.Asset;
+import com.assetslookup.data.internal.IFragmentInteraction;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -19,8 +22,11 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.As
   private List<Asset> assets;
   private NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
 
-  public AssetsListAdapter(List<Asset> assets) {
+  private Fragment fragment;
+
+  public AssetsListAdapter(List<Asset> assets, Fragment fragment) {
     this.assets = assets;
+    this.fragment = fragment;
   }
 
   @NonNull
@@ -34,10 +40,19 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.As
   }
 
   @Override
-  public void onBindViewHolder(@NonNull AssetsListViewHolder assetsListViewHolder, int i) {
+  public void onBindViewHolder(@NonNull AssetsListViewHolder assetsListViewHolder, final int i) {
     assetsListViewHolder.txtCode.setText(assets.get(i).getCode());
     assetsListViewHolder.txtName.setText(assets.get(i).getName());
     assetsListViewHolder.txtBalance.setText(numberFormat.format(assets.get(i).getBalance()));
+    assetsListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Message m = new Message();
+        m.what = 1;
+        m.obj = assets.get(i).getId();
+        ((IFragmentInteraction)fragment).sendMessage(m);
+      }
+    });
   }
 
   @Override

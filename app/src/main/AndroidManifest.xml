@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.assetslookup">
+  xmlns:tools="http://schemas.android.com/tools"
+  package="com.assetslookup">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.INTERNET" />
 
-    <application
-      android:allowClearUserData="true"
-      android:usesCleartextTraffic="true"
-        android:name="com.assetslookup.AppController"
-        android:allowBackup="true"
-        android:fullBackupContent="false"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_home_black_24dp"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.assetslookup.ui.assets.AssetsActivity" />
-        <activity android:name="com.assetslookup.ui.ForgotPasswordActivity" />
-        <activity android:name="com.assetslookup.ui.SignUpActivity" />
-        <activity android:name="com.assetslookup.ui.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+  <application
+    android:name=".AppController"
+    android:allowBackup="true"
+    android:allowClearUserData="true"
+    android:fullBackupContent="false"
+    android:icon="@drawable/ic_home_black_24dp"
+    android:label="@string/app_name"
+    android:roundIcon="@drawable/ic_home_black_24dp"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme"
+    android:usesCleartextTraffic="true">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-        </activity>
-    </application>
+    <activity android:name=".ui.ResetPasswordActivity" android:launchMode="singleInstance" android:parentActivityName=".ui.LoginActivity" android:noHistory="true">
+
+      <intent-filter android:label="Access using AssetsLookUP!">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="http"
+          android:host="www.assetslookup.com"
+          android:pathPrefix="/forgot_password" />
+      </intent-filter>
+
+    </activity>
+
+    <activity android:name=".ui.assets.AssetsActivity" android:parentActivityName=".ui.LoginActivity" android:noHistory="true" />
+    <activity android:name=".ui.ForgotPasswordActivity" android:parentActivityName=".ui.LoginActivity" android:noHistory="true" />
+    <activity android:name=".ui.SignUpActivity" android:parentActivityName=".ui.LoginActivity" android:noHistory="true" />
+    <activity android:name=".ui.LoginActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+      </intent-filter>
+    </activity>
+  </application>
 
 </manifest>

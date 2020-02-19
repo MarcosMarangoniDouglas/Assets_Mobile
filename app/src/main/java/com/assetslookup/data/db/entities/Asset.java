@@ -2,34 +2,12 @@ package com.assetslookup.data.db.entities;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- *     user_id: {
- *       type: mongoose.Schema.Types.ObjectId,
- *       required: [true, 'A valid user is necessary'],
- *       ref: 'user',
- *     },
- *     name: {
- *       type: String,
- *       default: '',
- *     },
- *     code: {
- *       type: String, required: [true, 'A code is necessary'],
- *       max: [20, 'Sorry you reached the maximum number of characters']
- *     },
- *     autorefresh: { type: Boolean, default: false },
- *     balance: { type: Number, default: 0 },
- *     unit: { type: Number, default: 0 },
- *     irr: Number,
- *     group_a: { type: String, default: '' },
- *     group_b: { type: String, default: '' },
- *     group_c: { type: String, default: '' },
- *
- *     movements: [{ type: MovementSchema, required: [true, 'A movement is needed'] }],
- */
-
 public class Asset {
+  @SerializedName("_id")
+  private  String id;
   @SerializedName("user_id")
   private String userId;
   private String name;
@@ -44,9 +22,10 @@ public class Asset {
   @SerializedName("group_c")
   private String groupC;
 
-  List<Movement> movements;
+  List<Movement> movements = new ArrayList<>();
 
-  public Asset(String userId, String name, String code, boolean autorefresh, Double balance, Double irr, String groupA, String groupB, String groupC, List<Movement> movements) {
+  public Asset(String id, String userId, String name, String code, boolean autorefresh, Double balance, Double irr, String groupA, String groupB, String groupC, List<Movement> movements) {
+    this.id = id;
     this.userId = userId;
     this.name = name;
     this.code = code;
@@ -57,6 +36,14 @@ public class Asset {
     this.groupB = groupB;
     this.groupC = groupC;
     this.movements = movements;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   public String getUserId() {

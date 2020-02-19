@@ -28,13 +28,14 @@ public interface IAssetsService {
 
     @POST("/api/reset_password")
     Call<Void> resetPassword(@Body User user);
+
     // =========================
 
     // ASSETS ENDPOINTS
     @GET("/api/assets")
     Call<Assets> getAllAssets();
 
-    @GET("/api/asset/{assetId}")
+    @GET("/api/assets/{assetId}")
     Call<Asset> getAsset(@Path("assetId") String assetId);
     // =========================
 }

@@ -15,6 +15,9 @@ public class User implements Serializable {
   @PrimaryKey(autoGenerate = false)
   private Long id;
 
+  @SerializedName("_id")
+  private String userId;
+
   @SerializedName("username")
   private String username;
 
@@ -27,11 +30,16 @@ public class User implements Serializable {
   @SerializedName("last_name")
   private String lastName;
 
+  @SerializedName("forgot_password_token")
+  private String forgotPasswordToken;
+
   @Ignore
   public User() { }
 
-  public User(String username, String firstName, String lastName, String password) {
+  public User(String userId, String username, String firstName, String lastName, String password, String forgotPasswordToken) {
     this.id = 0L;
+    this.userId = userId;
+    this.forgotPasswordToken = forgotPasswordToken;
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -44,6 +52,14 @@ public class User implements Serializable {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 
   public String getUsername() {
@@ -76,5 +92,13 @@ public class User implements Serializable {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
+  }
+
+  public String getForgotPasswordToken() {
+    return forgotPasswordToken;
+  }
+
+  public void setForgotPasswordToken(String forgotPasswordToken) {
+    this.forgotPasswordToken = forgotPasswordToken;
   }
 }

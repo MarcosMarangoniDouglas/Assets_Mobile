@@ -13,6 +13,7 @@ import com.assetslookup.data.internal.APIError;
 import com.assetslookup.data.internal.ErrorUtils;
 import com.assetslookup.data.network.IAssetsService;
 import com.assetslookup.data.network.AssetsService;
+import com.assetslookup.ui.shared.PasswordEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,12 +21,12 @@ import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity{
 
-  IAssetsService warehouseService = AssetsService.getInstance().create(IAssetsService.class);
+  IAssetsService assetsService = AssetsService.getInstance().create(IAssetsService.class);
 
   EditText editFirstName;
   EditText editLastName;
   EditText editUsername;
-  EditText editPassword;
+  PasswordEditText editPassword;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,12 @@ public class SignUpActivity extends AppCompatActivity{
     editLastName = findViewById(R.id.editLastName);
     editUsername = findViewById(R.id.editUsername);
     editPassword = findViewById(R.id.editPassword);
+    findViewById(R.id.btnSignUp).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        onSignUp();
+      }
+    });
 
     toolbar.setNavigationOnClickListener(new View.OnClickListener() {
       @Override
@@ -47,14 +54,14 @@ public class SignUpActivity extends AppCompatActivity{
     });
   }
 
-  public void onSignUp(View view) {
+  public void onSignUp() {
     String username = editUsername.getText().toString();
     String password = editPassword.getText().toString();
     String firstName = editFirstName.getText().toString();
     String lastName = editLastName.getText().toString();
 
-    User user = new User(username, firstName, lastName, password);
-    warehouseService.signUp(user).enqueue(new Callback<User>() {
+    User user = new User();
+    assetsService.signUp(user).enqueue(new Callback<User>() {
       @Override
       public void onResponse(Call<User> call, Response<User> response) {
         if(response.code() == 200) {

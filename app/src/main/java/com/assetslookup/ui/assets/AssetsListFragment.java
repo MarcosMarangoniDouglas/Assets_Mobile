@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.assetslookup.data.internal.ErrorUtils;
 import com.assetslookup.data.internal.IFragmentInteraction;
 import com.assetslookup.data.network.AssetsService;
 import com.assetslookup.data.network.IAssetsService;
+import com.assetslookup.ui.shared.BaseChildNestedFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AssetsListFragment extends Fragment
+public class AssetsListFragment extends BaseChildNestedFragment
   implements IFragmentInteraction {
-
-  private IAssetsService assetsService = AssetsService.getInstance().create(IAssetsService.class);
 
   private RecyclerView assetsList;
   private AssetsListAdapter assetsListAdapter;
@@ -47,16 +47,8 @@ public class AssetsListFragment extends Fragment
 
   public AssetsListFragment() {
     assets = new ArrayList<>();
-    assetsListAdapter = new AssetsListAdapter(assets);
+    assetsListAdapter = new AssetsListAdapter(assets, this);
   }
-
-  public static AssetsListFragment newInstance() {
-    AssetsListFragment fragment = new AssetsListFragment();
-    Bundle args = new Bundle();
-    fragment.setArguments(args);
-    return fragment;
-  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -75,6 +67,8 @@ public class AssetsListFragment extends Fragment
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
+    toolbar.setTitle("ASSETS");
+
     assetsList = view.findViewById(R.id.assetsList);
     progressAssets = view.findViewById(R.id.progressAssets);
     assetsRefresh = view.findViewById(R.id.assetsRefresh);
@@ -89,6 +83,13 @@ public class AssetsListFragment extends Fragment
         refreshAssets();
       }
     });
+  }
+
+  @Override
+  public void onHiddenChanged(boolean hidden) {
+    if(!hidden) {
+      toolbar.setTitle("ASSETS");
+    }
   }
 
   private void refreshAssets(){
@@ -121,6 +122,11 @@ public class AssetsListFragment extends Fragment
 
   @Override
   public void sendMessage(Message message) {
-
+    if(message.what == 1) {
+      String assetId = (String) message.obj;
+      Bundle bundle = new Bundle();
+      bundle.putString("ASSET_ID", assetId);
+      fragmentManagerHelper.attach(AssetMovementsFragment.class, bundle);
+    }
   }
 }

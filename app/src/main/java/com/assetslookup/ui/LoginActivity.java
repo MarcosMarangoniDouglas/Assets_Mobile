@@ -16,6 +16,7 @@ import com.assetslookup.data.internal.ErrorUtils;
 import com.assetslookup.data.network.IAssetsService;
 import com.assetslookup.data.network.AssetsService;
 import com.assetslookup.ui.assets.AssetsActivity;
+import com.assetslookup.ui.shared.PasswordEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +29,8 @@ public class LoginActivity extends AppCompatActivity {
             AssetsService.getInstance().create(IAssetsService.class);
 
     String username, password;
-    EditText editPasssword, editUsername;
+    EditText editUsername;
+    PasswordEditText editPasssword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 editUsername.setText("cesar.reboucas@gmail.com");
-                editPasssword.setText("teste1234");
+                editPasssword.setText("1234");
             }
         });
 

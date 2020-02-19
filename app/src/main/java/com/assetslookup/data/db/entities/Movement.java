@@ -1,17 +1,30 @@
 package com.assetslookup.data.db.entities;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Movement {
 
+  @SerializedName("_id")
+  private String id;
   private String date;
   private String kind;
   private Double value;
   private String comment;
 
-  public Movement(String date, String kind, Double value, String comment) {
+  public Movement(String id, String date, String kind, Double value, String comment) {
+    this.id = id;
     this.date = date;
     this.kind = kind;
     this.value = value;
     this.comment = comment;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   public String getDate() {
