@@ -12,7 +12,11 @@ import com.assetslookup.data.db.entities.Asset;
 import com.assetslookup.data.db.entities.Movement;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AssetMovementsListAdapter extends RecyclerView.Adapter<AssetMovementsListAdapter.AssetMovementsListViewHolder> {
   private List<Movement> movements;
@@ -35,7 +39,14 @@ public class AssetMovementsListAdapter extends RecyclerView.Adapter<AssetMovemen
   @Override
   public void onBindViewHolder(@NonNull AssetMovementsListViewHolder assetsListViewHolder, int i) {
 
-    String date = movements.get(i).getDate();
+    String date = null;
+    try {
+      Date parsedDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault()).parse(movements.get(i).getDate());
+      date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(parsedDate);
+    } catch (ParseException e) {
+      e.printStackTrace();
+      date = "";
+    }
     String kind = movements.get(i).getKind();
     Double balance = movements.get(i).getValue();
     String comment = movements.get(i).getComment();

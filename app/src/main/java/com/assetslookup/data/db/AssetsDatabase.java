@@ -11,7 +11,7 @@ import com.assetslookup.data.db.entities.User;
 
 @Database(entities = {
   User.class,
-}, version = 7, exportSchema = false)
+}, version = 8, exportSchema = false)
 public abstract class AssetsDatabase extends RoomDatabase {
 
   private static AssetsDatabase INSTANCE;

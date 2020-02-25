@@ -41,6 +41,13 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/txtInput</item>
     </style>
+    <style name="loggedTextView" parent="TextAppearance.AppCompat">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/txtInput</item>
+    </style>
 
     <style name="loginEditText" parent="TextAppearance.AppCompat">
         <item name="android:layout_width">325dp</item>
@@ -51,11 +58,26 @@
         <item name="android:ems">10</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+    <style name="loggedEditText" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">325dp</item>
+        <item name="android:layout_height">43dp</item>
+        <item name="android:paddingStart">@dimen/editPaddingLeftRightIcon</item>
+        <item name="android:paddingEnd">@dimen/editPaddingLeftRightIcon</item>
+        <item name="android:background">@drawable/edit_background_dark</item>
+        <item name="android:ems">10</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 
     <style name="loginButton" parent="TextAppearance.AppCompat">
         <item name="android:layout_width">325dp</item>
         <item name="android:layout_height">52dp</item>
         <item name="android:background">@drawable/button_shape</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="loggedButton" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">325dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:background">@drawable/button_shape_dark</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 

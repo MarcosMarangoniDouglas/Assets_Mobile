@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,6 +45,7 @@ public class AssetsListFragment extends BaseChildNestedFragment
 
   private ProgressBar progressAssets;
   private SwipeRefreshLayout assetsRefresh;
+  private FloatingActionButton floatingBtnCreateAsset;
 
   public AssetsListFragment() {
     assets = new ArrayList<>();
@@ -72,6 +74,13 @@ public class AssetsListFragment extends BaseChildNestedFragment
     assetsList = view.findViewById(R.id.assetsList);
     progressAssets = view.findViewById(R.id.progressAssets);
     assetsRefresh = view.findViewById(R.id.assetsRefresh);
+    floatingBtnCreateAsset = view.findViewById(R.id.floatingBtnCreateAsset);
+    floatingBtnCreateAsset.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        fragmentManagerHelper.attach(AssetsCreateFragment.class);
+      }
+    });
 
     assetsList.setLayoutManager(new LinearLayoutManager(getContext()));
     assetsList.setAdapter(assetsListAdapter);
