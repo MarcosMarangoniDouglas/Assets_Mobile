@@ -1,4 +1,4 @@
-package com.assetslookup.ui.assets;
+package com.assetslookup.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,8 +9,9 @@ import android.view.MenuItem;
 
 import com.assetslookup.R;
 import com.assetslookup.data.internal.BottomNavigatorManager;
+import com.assetslookup.ui.assets.AssetsContainerFragment;
 
-public class AssetsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
     BottomNavigatorManager bottomNavigatorManager;

@@ -2,6 +2,7 @@ package com.assetslookup.ui.assets;
 
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -15,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.assetslookup.R;
+import com.assetslookup.data.db.entities.SearchQuote;
+import com.assetslookup.data.internal.IFragmentInteraction;
 import com.assetslookup.ui.shared.BaseChildNestedFragment;
 import com.assetslookup.ui.shared.CustomEditText;
 import com.assetslookup.ui.shared.DrawableClickListener;
@@ -23,7 +26,7 @@ import com.assetslookup.ui.shared.DrawableClickListener;
  * A simple {@link Fragment} subclass.
  */
 public class AssetsCreateFragment extends BaseChildNestedFragment
-  implements View.OnClickListener, DrawableClickListener {
+  implements View.OnClickListener, DrawableClickListener, IFragmentInteraction {
 
   ConstraintLayout layoutPublicStock, layoutStockInput;
 
@@ -53,6 +56,24 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
 
     editQuoteName = view.findViewById(R.id.editQuoteName);
     editQuoteName.setDrawableClickListener(this);
+    editQuoteName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if(hasFocus) {
+          Bundle bundle = new Bundle();
+          String quoteName = editQuoteName.getText().toString();
+          if(!quoteName.isEmpty()) {
+            String[] quoteSplitted = quoteName.split(" - ");
+            bundle.putString("SEARCH_CODE", quoteSplitted[0]);
+            bundle.putString("SEARCH_NAME", quoteSplitted[1]);
+          } else {
+            bundle.putString("SEARCH_CODE", "");
+            bundle.putString("SEARCH_NAME", "");
+          }
+          fragmentManagerHelper.attach(SearchQuoteFragment.class, bundle);
+        }
+      }
+    });
 
     editStockQuantity = view.findViewById(R.id.editStockQuantity);
     editUnitPrice = view.findViewById(R.id.editUnitPrice);
@@ -109,6 +130,14 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
   public void onClick(DrawablePosition target) {
     if(target == DrawablePosition.RIGHT) {
       Toast.makeText(getContext(), "Search for quote", Toast.LENGTH_SHORT).show();
+    }
+  }
+
+  @Override
+  public void sendMessage(Message message) {
+    if(message.what == 1) {
+      SearchQuote searchQuote = (SearchQuote) message.obj;
+      editQuoteName.setText(searchQuote.getCode() + " - " +searchQuote.getName());
     }
   }
 }

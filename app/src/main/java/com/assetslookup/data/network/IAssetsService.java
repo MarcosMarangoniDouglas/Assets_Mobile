@@ -3,6 +3,7 @@ package com.assetslookup.data.network;
 
 import com.assetslookup.data.db.entities.Asset;
 import com.assetslookup.data.db.entities.Assets;
+import com.assetslookup.data.db.entities.SearchQuote;
 import com.assetslookup.data.db.entities.Token;
 import com.assetslookup.data.db.entities.User;
 
@@ -13,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface IAssetsService {
 
@@ -37,5 +39,8 @@ public interface IAssetsService {
 
     @GET("/api/assets/{assetId}")
     Call<Asset> getAsset(@Path("assetId") String assetId);
+
+    @GET("/api/assets/queryquote")
+    Call<List<SearchQuote>> searchQuote(@Query("query") String quote);
     // =========================
 }

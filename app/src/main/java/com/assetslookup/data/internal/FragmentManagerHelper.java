@@ -1,6 +1,7 @@
 package com.assetslookup.data.internal;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -66,6 +67,15 @@ public class FragmentManagerHelper {
         fragmentTransaction.show(penultimateFragment);
         fragmentTransaction.commit();
         return true;
+    }
+
+    public void sendMessage(Class<? extends Fragment> fragment, Message message) {
+        Fragment tmpFragment = fragmentManager.findFragmentByTag(fragment.getName());
+        if(tmpFragment != null) {
+            if(tmpFragment instanceof IFragmentInteraction) {
+                ((IFragmentInteraction)tmpFragment).sendMessage(message);
+            }
+        }
     }
 
     private void hideFragments() {

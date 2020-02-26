@@ -30,7 +30,7 @@
 
     </activity>
 
-    <activity android:name=".ui.assets.AssetsActivity" android:parentActivityName=".ui.LoginActivity" android:noHistory="true" />
+    <activity android:name=".ui.HomeActivity" android:parentActivityName=".ui.LoginActivity" android:noHistory="true" />
     <activity android:name=".ui.ForgotPasswordActivity" android:parentActivityName=".ui.LoginActivity" android:noHistory="true" />
     <activity android:name=".ui.SignUpActivity" android:parentActivityName=".ui.LoginActivity" android:noHistory="true" />
     <activity android:name=".ui.LoginActivity">
