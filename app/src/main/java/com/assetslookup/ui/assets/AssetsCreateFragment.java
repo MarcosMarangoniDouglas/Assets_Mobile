@@ -116,7 +116,6 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
       newLayoutParams.topMargin = 90 * density;
       layoutStockInput.setLayoutParams(newLayoutParams);
       layoutPublicStock.setVisibility(View.VISIBLE);
-      editQuoteName.requestFocus();
     } else {
       // Hide quotes name option
       ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) layoutStockInput.getLayoutParams();
@@ -129,7 +128,17 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
   @Override
   public void onClick(DrawablePosition target) {
     if(target == DrawablePosition.RIGHT) {
-      Toast.makeText(getContext(), "Search for quote", Toast.LENGTH_SHORT).show();
+      Bundle bundle = new Bundle();
+      String quoteName = editQuoteName.getText().toString();
+      if(!quoteName.isEmpty()) {
+        String[] quoteSplitted = quoteName.split(" - ");
+        bundle.putString("SEARCH_CODE", quoteSplitted[0]);
+        bundle.putString("SEARCH_NAME", quoteSplitted[1]);
+      } else {
+        bundle.putString("SEARCH_CODE", "");
+        bundle.putString("SEARCH_NAME", "");
+      }
+      fragmentManagerHelper.attach(SearchQuoteFragment.class, bundle);
     }
   }
 

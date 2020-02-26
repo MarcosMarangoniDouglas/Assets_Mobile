@@ -9,32 +9,31 @@
     android:id="@+id/txtCode"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="32dp"
     android:text="Code"
     android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-    app:layout_constraintStart_toEndOf="@+id/imageView4"
-    app:layout_constraintTop_toTopOf="@+id/imageView4" />
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+    app:layout_constraintStart_toStartOf="@+id/guideline4"
+    app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
     android:id="@+id/txtName"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="40dp"
+    android:maxEms="25"
+    android:maxLines="2"
     android:text="Name"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/txtCode"
-    app:layout_constraintTop_toTopOf="parent"
-    android:maxEms="25"
-    android:maxLines="2"/>
+    app:layout_constraintStart_toStartOf="@+id/guideline5"
+    app:layout_constraintTop_toTopOf="parent" />
 
   <ImageView
     android:id="@+id/imageView4"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
     app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/guideline4"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.49"
@@ -50,4 +49,18 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:srcCompat="@drawable/bordered_line" />
+
+  <android.support.constraint.Guideline
+    android:id="@+id/guideline4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.15" />
+
+  <android.support.constraint.Guideline
+    android:id="@+id/guideline5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.4" />
 </android.support.constraint.ConstraintLayout>
