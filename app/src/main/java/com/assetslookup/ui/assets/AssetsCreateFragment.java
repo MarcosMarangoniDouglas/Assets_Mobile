@@ -112,8 +112,8 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
     if(checkPublicStock.isChecked()) {
       // Show quotes name option
       ConstraintLayout.LayoutParams newLayoutParams = (ConstraintLayout.LayoutParams) layoutStockInput.getLayoutParams();
-      int density = (int) getResources().getDisplayMetrics().density;
-      newLayoutParams.topMargin = 90 * density;
+      double density = getResources().getDisplayMetrics().density;
+      newLayoutParams.topMargin = (int)(90 * density);
       layoutStockInput.setLayoutParams(newLayoutParams);
       layoutPublicStock.setVisibility(View.VISIBLE);
     } else {
