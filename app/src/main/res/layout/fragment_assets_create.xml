@@ -10,6 +10,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.assets.AssetsCreateFragment">
 
+    <ProgressBar
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/assetCreateProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <android.support.constraint.Guideline
       android:id="@+id/guideline"
       android:layout_width="wrap_content"
@@ -102,13 +113,13 @@
         app:layout_constraintStart_toStartOf="@+id/editStockQuantity" />
 
       <EditText
-        android:id="@+id/editStockQuantity"
-        style="@style/loggedEditText"
-        android:layout_marginTop="30dp"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+          android:id="@+id/editStockQuantity"
+          style="@style/loggedEditText"
+          android:layout_marginTop="30dp"
+          android:inputType="number|textPersonName"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
       <TextView
         android:id="@+id/txtUnitPrice"
@@ -118,13 +129,13 @@
         app:layout_constraintStart_toStartOf="@+id/editUnitPrice" />
 
       <EditText
-        android:id="@+id/editUnitPrice"
-        style="@style/loggedEditText"
-        android:layout_marginTop="120dp"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+          android:id="@+id/editUnitPrice"
+          style="@style/loggedEditText"
+          android:layout_marginTop="120dp"
+          android:inputType="textPersonName|numberDecimal"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
       <TextView
         android:id="@+id/txtStockLocation"

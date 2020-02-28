@@ -1,11 +1,14 @@
 package com.assetslookup.data.db.entities;
 
+import android.arch.persistence.room.Ignore;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Asset {
+public class Asset implements Serializable {
   @SerializedName("_id")
   private  String id;
   @SerializedName("user_id")
@@ -14,6 +17,7 @@ public class Asset {
   private String code;
   private boolean autorefresh;
   private Double balance;
+  private Double unit;
   private Double irr;
   @SerializedName("group_a")
   private String groupA;
@@ -24,7 +28,14 @@ public class Asset {
 
   List<Movement> movements = new ArrayList<>();
 
-  public Asset(String id, String userId, String name, String code, boolean autorefresh, Double balance, Double irr, String groupA, String groupB, String groupC, List<Movement> movements) {
+  @Ignore
+  public Asset() {
+
+  }
+
+  public Asset(String id, String userId, String name, String code, boolean autorefresh, Double balance, Double irr, String groupA, String groupB, String groupC, List<Movement> movement,
+               Double unit) {
+    this.unit = unit;
     this.id = id;
     this.userId = userId;
     this.name = name;
@@ -124,5 +135,13 @@ public class Asset {
 
   public void setMovements(List<Movement> movements) {
     this.movements = movements;
+  }
+
+  public Double getUnit() {
+    return unit;
+  }
+
+  public void setUnit(Double unit) {
+    this.unit = unit;
   }
 }

@@ -1,16 +1,22 @@
 package com.assetslookup.ui.assets;
 
+import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.assetslookup.R;
+import com.assetslookup.data.db.AssetsDatabase;
 import com.assetslookup.data.db.entities.Asset;
 import com.assetslookup.data.db.entities.Movement;
+import com.assetslookup.data.internal.IFragmentInteraction;
 
+import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,10 +26,12 @@ import java.util.Locale;
 
 public class AssetMovementsListAdapter extends RecyclerView.Adapter<AssetMovementsListAdapter.AssetMovementsListViewHolder> {
   private List<Movement> movements;
+  private Fragment fragment;
   private NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
 
-  public AssetMovementsListAdapter(List<Movement> movements) {
+  public AssetMovementsListAdapter(List<Movement> movements, Fragment fragment) {
     this.movements = movements;
+    this.fragment = fragment;
   }
 
   @NonNull
@@ -37,7 +45,7 @@ public class AssetMovementsListAdapter extends RecyclerView.Adapter<AssetMovemen
   }
 
   @Override
-  public void onBindViewHolder(@NonNull AssetMovementsListViewHolder assetsListViewHolder, int i) {
+  public void onBindViewHolder(@NonNull AssetMovementsListViewHolder assetsListViewHolder, final int i) {
 
     String date = null;
     try {
@@ -56,6 +64,8 @@ public class AssetMovementsListAdapter extends RecyclerView.Adapter<AssetMovemen
     }
 
     if(kind != null) {
+      if(kind.equals("buy")) kind = "Buy";
+      else if(kind.equals("dividend")) kind = "Dividend";
       assetsListViewHolder.txtKind.setText(kind);
     }
 
@@ -73,8 +83,9 @@ public class AssetMovementsListAdapter extends RecyclerView.Adapter<AssetMovemen
     return movements.size();
   }
 
-  public class AssetMovementsListViewHolder extends RecyclerView.ViewHolder {
-    public TextView txtDate, txtKind, txtValue, txtComment;
+  class AssetMovementsListViewHolder extends RecyclerView.ViewHolder {
+    TextView txtDate, txtKind, txtValue, txtComment;
+
     public AssetMovementsListViewHolder(@NonNull View itemView) {
       super(itemView);
       txtDate = itemView.findViewById(R.id.txtDate);

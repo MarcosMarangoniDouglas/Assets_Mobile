@@ -3,6 +3,7 @@ package com.assetslookup.ui.assets;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.assetslookup.data.db.entities.Asset;
 import com.assetslookup.data.db.entities.Movement;
 import com.assetslookup.data.internal.APIError;
 import com.assetslookup.data.internal.ErrorUtils;
+import com.assetslookup.data.internal.IFragmentInteraction;
 import com.assetslookup.ui.shared.BaseChildNestedFragment;
 
 import java.util.ArrayList;
@@ -30,7 +32,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AssetMovementsFragment extends BaseChildNestedFragment {
+public class AssetMovementsFragment extends BaseChildNestedFragment
+  implements IFragmentInteraction {
 
   String assetId;
 
@@ -47,7 +50,7 @@ public class AssetMovementsFragment extends BaseChildNestedFragment {
 
   public AssetMovementsFragment() {
     movements = new ArrayList<>();
-    assetMovementsListAdapter = new AssetMovementsListAdapter(movements);
+    assetMovementsListAdapter = new AssetMovementsListAdapter(movements, this);
     assetId = "";
   }
 
@@ -136,5 +139,9 @@ public class AssetMovementsFragment extends BaseChildNestedFragment {
         assetMovementsRefresh.setRefreshing(false);
       }
     });
+  }
+
+  @Override
+  public void sendMessage(Message message) {
   }
 }

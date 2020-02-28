@@ -13,14 +13,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.assetslookup.R;
+import com.assetslookup.data.db.entities.Asset;
 import com.assetslookup.data.db.entities.SearchQuote;
+import com.assetslookup.data.internal.APIError;
+import com.assetslookup.data.internal.ErrorUtils;
 import com.assetslookup.data.internal.IFragmentInteraction;
 import com.assetslookup.ui.shared.BaseChildNestedFragment;
 import com.assetslookup.ui.shared.CustomEditText;
 import com.assetslookup.ui.shared.DrawableClickListener;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +43,7 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
   CustomEditText editQuoteName;
   Button btnCreateAsset;
   CheckBox checkPublicStock;
+  ProgressBar assetCreateProgressBar;
 
   public AssetsCreateFragment() {
     // Required empty public constructor
@@ -63,17 +72,16 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
           Bundle bundle = new Bundle();
           String quoteName = editQuoteName.getText().toString();
           if(!quoteName.isEmpty()) {
-            String[] quoteSplitted = quoteName.split(" - ");
-            bundle.putString("SEARCH_CODE", quoteSplitted[0]);
-            bundle.putString("SEARCH_NAME", quoteSplitted[1]);
+            bundle.putString("SEARCH_CODE", quoteName);
           } else {
             bundle.putString("SEARCH_CODE", "");
-            bundle.putString("SEARCH_NAME", "");
           }
           fragmentManagerHelper.attach(SearchQuoteFragment.class, bundle);
         }
       }
     });
+
+    assetCreateProgressBar = view.findViewById(R.id.assetCreateProgressBar);
 
     editStockQuantity = view.findViewById(R.id.editStockQuantity);
     editUnitPrice = view.findViewById(R.id.editUnitPrice);
@@ -105,7 +113,56 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
   }
 
   private void onBtnCreateAssetClick(View v) {
+    String stockQuantity;
+    String unitPrice;
+    if(editStockQuantity.getText().toString().isEmpty()) {
+      stockQuantity = "0";
+    } else stockQuantity = editStockQuantity.getText().toString();
+    if(editUnitPrice.getText().toString().isEmpty()) {
+      unitPrice = "0";
+    } else unitPrice = editUnitPrice.getText().toString();
+    Double quantityOfStocks = Double.parseDouble(stockQuantity);
+    Double priceUnit = Double.parseDouble(unitPrice);
 
+    String assetName = editAssetName.getText().toString();
+    String quoteName = editQuoteName.getText().toString();
+    String stockLocation = editStockLocation.getText().toString();
+    String stockSection = editStockSection.getText().toString();
+    String stockCategory = editStockCategory.getText().toString();
+
+    Asset asset = new Asset();
+    asset.setName(assetName);
+    asset.setUnit(priceUnit);
+    asset.setBalance(quantityOfStocks);
+    if(!quoteName.isEmpty()) {
+      asset.setAutorefresh(true);
+    } else {
+      asset.setAutorefresh(false);
+    }
+    asset.setCode(quoteName);
+    asset.setGroupA(stockCategory);
+    asset.setGroupB(stockLocation);
+    asset.setGroupC(stockSection);
+
+    assetCreateProgressBar.setVisibility(View.VISIBLE);
+    assetsService.createAsset(asset).enqueue(new Callback<Void>() {
+      @Override
+      public void onResponse(Call<Void> call, Response<Void> response) {
+        if(response.code() == 200) {
+          Toast.makeText(getContext(), "Asset created successfully!", Toast.LENGTH_SHORT).show();
+        } else {
+          APIError apiError = ErrorUtils.parseError(response);
+          Toast.makeText(getContext(), apiError.message(), Toast.LENGTH_SHORT).show();
+        }
+        assetCreateProgressBar.setVisibility(View.INVISIBLE);
+      }
+
+      @Override
+      public void onFailure(Call<Void> call, Throwable t) {
+        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+        assetCreateProgressBar.setVisibility(View.INVISIBLE);
+      }
+    });
   }
 
   private void onRadioPublicStockClick(View v) {
@@ -131,12 +188,9 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
       Bundle bundle = new Bundle();
       String quoteName = editQuoteName.getText().toString();
       if(!quoteName.isEmpty()) {
-        String[] quoteSplitted = quoteName.split(" - ");
-        bundle.putString("SEARCH_CODE", quoteSplitted[0]);
-        bundle.putString("SEARCH_NAME", quoteSplitted[1]);
+        bundle.putString("SEARCH_CODE", quoteName);
       } else {
         bundle.putString("SEARCH_CODE", "");
-        bundle.putString("SEARCH_NAME", "");
       }
       fragmentManagerHelper.attach(SearchQuoteFragment.class, bundle);
     }
@@ -146,7 +200,7 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
   public void sendMessage(Message message) {
     if(message.what == 1) {
       SearchQuote searchQuote = (SearchQuote) message.obj;
-      editQuoteName.setText(searchQuote.getCode() + " - " +searchQuote.getName());
+      editQuoteName.setText(searchQuote.getCode());
     }
   }
 }

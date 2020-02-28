@@ -2,7 +2,9 @@ package com.assetslookup.data.db.entities;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Movement {
+import java.io.Serializable;
+
+public class Movement implements Serializable {
 
   @SerializedName("_id")
   private String id;

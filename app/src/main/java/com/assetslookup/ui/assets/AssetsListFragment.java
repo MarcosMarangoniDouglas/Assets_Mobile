@@ -20,6 +20,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.assetslookup.R;
+import com.assetslookup.data.db.AssetsDatabase;
 import com.assetslookup.data.db.entities.Asset;
 import com.assetslookup.data.db.entities.Assets;
 import com.assetslookup.data.internal.APIError;
@@ -132,10 +133,35 @@ public class AssetsListFragment extends BaseChildNestedFragment
   @Override
   public void sendMessage(Message message) {
     if(message.what == 1) {
-      String assetId = (String) message.obj;
+      Asset asset = (Asset) message.obj;
       Bundle bundle = new Bundle();
-      bundle.putString("ASSET_ID", assetId);
+      bundle.putString("ASSET_ID", asset.getId());
       fragmentManagerHelper.attach(AssetMovementsFragment.class, bundle);
+    }
+    // Edit - Call create fragment with the asset
+    else if(message.what == 2) {
+
+    }
+    // Delete
+    else if(message.what == 3) {
+      Asset asset = (Asset) message.obj;
+      String assetId = asset.getId();
+      assetsService.deleteAsset(asset).enqueue(new Callback<Void>() {
+        @Override
+        public void onResponse(Call<Void> call, Response<Void> response) {
+          if(response.code() == 200) {
+            Toast.makeText(getContext(), "Asset deleted", Toast.LENGTH_SHORT).show();
+          } else {
+            APIError apiError = ErrorUtils.parseError(response);
+            Toast.makeText(getContext(), apiError.message(), Toast.LENGTH_SHORT).show();
+          }
+        }
+
+        @Override
+        public void onFailure(Call<Void> call, Throwable t) {
+
+        }
+      });
     }
   }
 }

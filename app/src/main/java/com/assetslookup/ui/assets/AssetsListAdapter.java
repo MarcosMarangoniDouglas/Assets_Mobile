@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.assetslookup.R;
@@ -47,12 +48,29 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.As
     assetsListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Message m = new Message();
-        m.what = 1;
-        m.obj = assets.get(i).getId();
-        ((IFragmentInteraction)fragment).sendMessage(m);
+        sendMessage(1, assets.get(i));
       }
     });
+    assetsListViewHolder.btnEditAsset.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        sendMessage(2, assets.get(i));
+      }
+    });
+
+    assetsListViewHolder.btnDeleteAsset.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        sendMessage(3, assets.get(i));
+      }
+    });
+  }
+
+  private void sendMessage(int what, Object obj) {
+    Message m = new Message();
+    m.what = what;
+    m.obj = obj;
+    ((IFragmentInteraction)fragment).sendMessage(m);
   }
 
   @Override
@@ -62,11 +80,14 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.As
 
   public class AssetsListViewHolder extends RecyclerView.ViewHolder {
     public TextView txtName, txtCode, txtBalance;
+    Button btnDeleteAsset, btnEditAsset;
     public AssetsListViewHolder(@NonNull View itemView) {
       super(itemView);
       txtName = itemView.findViewById(R.id.txtName);
       txtCode = itemView.findViewById(R.id.txtCode);
       txtBalance = itemView.findViewById(R.id.txtBalance);
+      btnDeleteAsset = itemView.findViewById(R.id.btnDeleteAsset);
+      btnEditAsset = itemView.findViewById(R.id.btnEditAsset);
     }
   }
 }

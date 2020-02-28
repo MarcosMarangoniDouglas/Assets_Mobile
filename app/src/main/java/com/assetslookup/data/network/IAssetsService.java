@@ -11,6 +11,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -42,5 +43,11 @@ public interface IAssetsService {
 
     @GET("/api/assets/queryquote")
     Call<List<SearchQuote>> searchQuote(@Query("query") String quote);
+
+    @POST("/api/assets")
+    Call<Void> createAsset(@Body Asset asset);
+
+    @DELETE("/api/assets")
+    Call<Void> deleteAsset(@Body Asset asset);
     // =========================
 }
