@@ -10,6 +10,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Code"
+      android:maxEms="5"
+      android:maxLines="3"
     android:textStyle="bold"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toStartOf="@+id/guideline5"
@@ -17,16 +19,16 @@
     app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-    android:id="@+id/txtName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:maxEms="25"
-    android:maxLines="2"
-    android:text="Name"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="@+id/guideline5"
-    app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/txtName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:maxEms="10"
+      android:maxLines="3"
+      android:text="Name"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="@+id/guideline5"
+      app:layout_constraintTop_toTopOf="parent" />
 
   <ImageView
     android:id="@+id/imageView4"
@@ -58,9 +60,9 @@
     app:layout_constraintGuide_percent="0.15" />
 
   <android.support.constraint.Guideline
-    android:id="@+id/guideline5"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:layout_constraintGuide_percent="0.4" />
+      android:id="@+id/guideline5"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.40145984" />
 </android.support.constraint.ConstraintLayout>

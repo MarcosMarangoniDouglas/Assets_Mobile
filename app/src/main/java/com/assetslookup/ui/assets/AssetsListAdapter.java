@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.assetslookup.R;
@@ -80,7 +81,7 @@ public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.As
 
   public class AssetsListViewHolder extends RecyclerView.ViewHolder {
     public TextView txtName, txtCode, txtBalance;
-    Button btnDeleteAsset, btnEditAsset;
+    ImageButton btnDeleteAsset, btnEditAsset;
     public AssetsListViewHolder(@NonNull View itemView) {
       super(itemView);
       txtName = itemView.findViewById(R.id.txtName);
