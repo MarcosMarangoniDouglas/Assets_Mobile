@@ -9,12 +9,15 @@ import android.view.MenuItem;
 
 import com.assetslookup.R;
 import com.assetslookup.data.internal.BottomNavigatorManager;
+import com.assetslookup.data.internal.FragmentManagerHelper;
 import com.assetslookup.ui.assets.AssetsContainerFragment;
+import com.assetslookup.ui.profile.ProfileContainerFragment;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
     BottomNavigatorManager bottomNavigatorManager;
+    FragmentManagerHelper fragmentManagerHelper;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.GOALS:
                 break;
             case R.id.PROFILE:
+                bottomNavigatorManager.attach(ProfileContainerFragment.class);
+                //MUDAR A COR DO MENU ITEM
                 break;
         }
         return false;

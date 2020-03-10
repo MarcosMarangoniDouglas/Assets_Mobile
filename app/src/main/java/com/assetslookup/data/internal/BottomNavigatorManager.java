@@ -20,11 +20,11 @@ public class BottomNavigatorManager {
 
   public void attach(Class<? extends Fragment> fragment) {
     try {
-      detachFragments();
+      FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
       Constructor<? extends Fragment> constructor = fragment.getConstructor();
       Fragment newFragment = constructor.newInstance();
       Fragment searchFragment = fragmentManager.findFragmentByTag(fragment.getName());
-      FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+      detachFragments(fragmentTransaction, searchFragment);
       if(searchFragment == null) {
         fragmentTransaction.add(fragmentContainer, newFragment, fragment.getName());
       } else {
@@ -38,11 +38,11 @@ public class BottomNavigatorManager {
 
   public void attach(Class<? extends Fragment> fragment, Bundle bundle) {
     try {
-      detachFragments();
       Constructor<? extends Fragment> constructor = fragment.getConstructor();
       Fragment newFragment = constructor.newInstance();
       Fragment searchFragment = fragmentManager.findFragmentByTag(fragment.getName());
       FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+      detachFragments(fragmentTransaction, searchFragment);
       if(searchFragment == null) {
         fragmentTransaction.add(fragmentContainer, newFragment, fragment.getName());
         newFragment.setArguments(bundle);
@@ -61,10 +61,9 @@ public class BottomNavigatorManager {
     return true;
   }
 
-  private void detachFragments() {
-    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+  private void detachFragments(FragmentTransaction fragmentTransaction, Fragment searchFragment) {
     for (Fragment fragment : fragmentManager.getFragments()) {
-      if(fragment.isVisible()) {
+      if(!fragment.isDetached() && fragment != searchFragment) {
         fragmentTransaction.detach(fragment);
       }
     }

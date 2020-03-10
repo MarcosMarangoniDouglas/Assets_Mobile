@@ -1,6 +1,7 @@
 package com.assetslookup.ui.assets;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.assetslookup.data.db.entities.SearchQuote;
 import com.assetslookup.data.internal.APIError;
 import com.assetslookup.data.internal.ErrorUtils;
 import com.assetslookup.data.internal.IFragmentInteraction;
+import com.assetslookup.ui.HomeActivity;
 import com.assetslookup.ui.shared.BaseChildNestedFragment;
 import com.assetslookup.ui.shared.CustomEditText;
 import com.assetslookup.ui.shared.DrawableClickListener;
@@ -150,6 +152,10 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
       public void onResponse(Call<Void> call, Response<Void> response) {
         if(response.code() == 200) {
           Toast.makeText(getContext(), "Asset created successfully!", Toast.LENGTH_SHORT).show();
+
+          //Return to Assets Container
+          fragmentManagerHelper.attach(AssetsContainerFragment.class);
+
         } else {
           APIError apiError = ErrorUtils.parseError(response);
           Toast.makeText(getContext(), apiError.message(), Toast.LENGTH_SHORT).show();
