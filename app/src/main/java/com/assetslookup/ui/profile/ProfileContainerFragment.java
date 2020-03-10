@@ -24,7 +24,8 @@ public class ProfileContainerFragment extends BaseParentNestedFragment implement
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        fragmentManagerHelper.attach(ProfileFragment.class);
+        fragmentManagerHelper.attachIfNotExist(ProfileFragment.class);
+        toolbar.setTitle("PROFILE");
     }
 
         @Override

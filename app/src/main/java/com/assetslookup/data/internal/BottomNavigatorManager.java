@@ -21,11 +21,11 @@ public class BottomNavigatorManager {
   public void attach(Class<? extends Fragment> fragment) {
     try {
       FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-      Constructor<? extends Fragment> constructor = fragment.getConstructor();
-      Fragment newFragment = constructor.newInstance();
       Fragment searchFragment = fragmentManager.findFragmentByTag(fragment.getName());
       detachFragments(fragmentTransaction, searchFragment);
       if(searchFragment == null) {
+        Constructor<? extends Fragment> constructor = fragment.getConstructor();
+        Fragment newFragment = constructor.newInstance();
         fragmentTransaction.add(fragmentContainer, newFragment, fragment.getName());
       } else {
         fragmentTransaction.attach(searchFragment);
@@ -38,12 +38,12 @@ public class BottomNavigatorManager {
 
   public void attach(Class<? extends Fragment> fragment, Bundle bundle) {
     try {
-      Constructor<? extends Fragment> constructor = fragment.getConstructor();
-      Fragment newFragment = constructor.newInstance();
       Fragment searchFragment = fragmentManager.findFragmentByTag(fragment.getName());
       FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
       detachFragments(fragmentTransaction, searchFragment);
       if(searchFragment == null) {
+        Constructor<? extends Fragment> constructor = fragment.getConstructor();
+        Fragment newFragment = constructor.newInstance();
         fragmentTransaction.add(fragmentContainer, newFragment, fragment.getName());
         newFragment.setArguments(bundle);
       } else {
@@ -67,7 +67,6 @@ public class BottomNavigatorManager {
         fragmentTransaction.detach(fragment);
       }
     }
-    fragmentTransaction.commit();
   }
 
 }

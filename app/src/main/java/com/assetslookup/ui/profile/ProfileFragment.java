@@ -27,20 +27,5 @@ public class ProfileFragment extends BaseChildNestedFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        toolbar.setTitle("PROFILE");
-        Log.d("PROFILE","onViewCreated");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d("PROFILE","onResume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d("PROFILE","onPause");
     }
 }

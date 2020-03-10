@@ -26,8 +26,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigatorManager = new BottomNavigatorManager(getSupportFragmentManager(), R.id.fragmentContainer);
-        // FIRST SCREEN
-        bottomNavigatorManager.attach(AssetsContainerFragment.class);
+        bottomNavigationView.setSelectedItemId(R.id.ASSETS);
     }
 
     @Override
@@ -35,13 +34,13 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         switch (menuItem.getItemId()) {
             case R.id.ASSETS:
                 bottomNavigatorManager.attach(AssetsContainerFragment.class);
-                break;
+                return true;
             case R.id.GOALS:
-                break;
+                return true;
             case R.id.PROFILE:
                 bottomNavigatorManager.attach(ProfileContainerFragment.class);
                 //MUDAR A COR DO MENU ITEM
-                break;
+                return true;
         }
         return false;
     }

@@ -25,7 +25,8 @@ public class AssetsContainerFragment extends BaseParentNestedFragment
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    fragmentManagerHelper.attach(AssetsListFragment.class);
+    fragmentManagerHelper.attachIfNotExist(AssetsListFragment.class);
+    toolbar.setTitle("ASSETS");
   }
 
   @Override

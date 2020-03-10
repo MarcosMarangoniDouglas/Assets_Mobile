@@ -69,9 +69,6 @@ public class AssetsListFragment extends BaseChildNestedFragment
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-
-    toolbar.setTitle("ASSETS");
-
     assetsList = view.findViewById(R.id.assetsList);
     progressAssets = view.findViewById(R.id.progressAssets);
     assetsRefresh = view.findViewById(R.id.assetsRefresh);
@@ -93,13 +90,6 @@ public class AssetsListFragment extends BaseChildNestedFragment
         refreshAssets();
       }
     });
-  }
-
-  @Override
-  public void onHiddenChanged(boolean hidden) {
-    if(!hidden) {
-      toolbar.setTitle("ASSETS");
-    }
   }
 
   private void refreshAssets(){

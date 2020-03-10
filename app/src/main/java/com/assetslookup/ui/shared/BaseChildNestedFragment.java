@@ -1,10 +1,12 @@
 package com.assetslookup.ui.shared;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,18 +23,11 @@ public class BaseChildNestedFragment extends Fragment {
   protected FragmentManagerHelper fragmentManagerHelper;
   protected IAssetsService assetsService = AssetsService.getInstance().create(IAssetsService.class);
   protected NumberFormat numberFormat = NumberFormat.getNumberInstance();
-  protected Toolbar toolbar;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Fragment parentFragment = getParentFragment();
-    if(!(parentFragment instanceof BaseParentNestedFragment)) {
-      throw new RuntimeException("Child must have a parent descendant of BaseParentNestedFragment");
-    } else {
-      fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.fragmentContainer);
-      this.toolbar = ((BaseParentNestedFragment) parentFragment).toolbar;
-    }
+    fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.fragmentContainer);
   }
 
   @Nullable
@@ -40,4 +35,10 @@ public class BaseChildNestedFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     return super.onCreateView(inflater, container, savedInstanceState);
   }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+  }
+
 }

@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,8 +70,6 @@ public class AssetMovementsFragment extends BaseChildNestedFragment
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    toolbar.setTitle("MOVEMENTS");
-
     txtName = view.findViewById(R.id.txtName);
     txtCode = view.findViewById(R.id.txtCode);
     txtBalance = view.findViewById(R.id.txtBalance);
@@ -94,13 +93,6 @@ public class AssetMovementsFragment extends BaseChildNestedFragment
         assetId = args.getString("ASSET_ID");
         refreshAssetMovements();
       }
-    }
-  }
-
-  @Override
-  public void onHiddenChanged(boolean hidden) {
-    if(!hidden) {
-      toolbar.setTitle("MOVEMENTS");
     }
   }
 

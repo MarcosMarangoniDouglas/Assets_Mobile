@@ -20,14 +20,29 @@ public class FragmentManagerHelper {
         this.fragmentContainer = fragmentContainer;
     }
 
+    public void attachIfNotExist(Class<? extends Fragment> newClass) {
+        try {
+            Fragment searchFragment = fragmentManager.findFragmentByTag(newClass.getName());
+            if(searchFragment == null) {
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Constructor<? extends Fragment> constructor = newClass.getConstructor();
+                Fragment fragment = constructor.newInstance();
+                fragmentTransaction.add(fragmentContainer, fragment, newClass.getName());
+                fragmentTransaction.commit();
+            }
+        } catch (Exception ex) {
+            Log.d("EXCEPTION", ex.getMessage());
+        }
+    }
+
     public void attach(Class<? extends Fragment> newClass) {
         try {
-            hideFragments();
-            Constructor<? extends Fragment> constructor = newClass.getConstructor();
-            Fragment fragment = constructor.newInstance();
             Fragment searchFragment = fragmentManager.findFragmentByTag(newClass.getName());
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            hideFragments(fragmentTransaction, searchFragment);
             if(searchFragment == null) {
+                Constructor<? extends Fragment> constructor = newClass.getConstructor();
+                Fragment fragment = constructor.newInstance();
                 fragmentTransaction.add(fragmentContainer, fragment, newClass.getName());
             } else {
                 fragmentTransaction.show(searchFragment);
@@ -40,12 +55,12 @@ public class FragmentManagerHelper {
 
     public void attach(Class<? extends Fragment> newClass, Bundle bundle) {
         try {
-            hideFragments();
-            Constructor<? extends Fragment> constructor = newClass.getConstructor();
-            Fragment fragment = constructor.newInstance();
             Fragment searchFragment = fragmentManager.findFragmentByTag(newClass.getName());
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            hideFragments(fragmentTransaction, searchFragment);
             if(searchFragment == null) {
+                Constructor<? extends Fragment> constructor = newClass.getConstructor();
+                Fragment fragment = constructor.newInstance();
                 fragmentTransaction.add(fragmentContainer, fragment, newClass.getName());
                 fragment.setArguments(bundle);
             } else {
@@ -78,13 +93,12 @@ public class FragmentManagerHelper {
         }
     }
 
-    private void hideFragments() {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    private void hideFragments(FragmentTransaction fragmentTransaction, Fragment searchFragment) {
         for (Fragment fragment : fragmentManager.getFragments()) {
-            if(fragment.isVisible()) {
+            if(fragment.getUserVisibleHint() && fragment != searchFragment) {
                 fragmentTransaction.hide(fragment);
             }
         }
-        fragmentTransaction.commit();
     }
+
 }
