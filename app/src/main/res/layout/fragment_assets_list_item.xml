@@ -96,7 +96,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="TSE Asset"
             app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderName"
             app:layout_constraintStart_toEndOf="@+id/txtPlaceholderName"
             app:layout_constraintTop_toTopOf="parent" />
@@ -107,7 +106,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="48dp"
-            android:text="TSE"
             app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderCode"
             app:layout_constraintStart_toEndOf="@+id/txtPlaceholderCode"
             app:layout_constraintTop_toTopOf="parent" />
@@ -117,7 +115,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="CAD 10,322.12"
             app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderBalance"
             app:layout_constraintStart_toEndOf="@+id/txtPlaceholderBalance"
             app:layout_constraintTop_toTopOf="parent"

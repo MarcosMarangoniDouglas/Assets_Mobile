@@ -62,7 +62,7 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    toolbar.setTitle("CREATE ASSET");
+    //toolbar.setTitle("CREATE ASSET");
     editAssetName = view.findViewById(R.id.editAssetName);
 
     editQuoteName = view.findViewById(R.id.editQuoteName);
