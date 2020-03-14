@@ -39,6 +39,9 @@ public class User implements Serializable {
   @SerializedName("forgot_password_token")
   private String forgotPasswordToken;
 
+  @SerializedName("status")
+  private String status;
+
   @Ignore
   public User() { }
 
@@ -122,5 +125,13 @@ public class User implements Serializable {
 
   public void setNewPassword1(String newPassword1) {
     this.newPassword1 = newPassword1;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 }

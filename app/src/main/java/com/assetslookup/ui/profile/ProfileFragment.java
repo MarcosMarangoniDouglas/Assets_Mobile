@@ -79,15 +79,27 @@ public class ProfileFragment extends BaseChildNestedFragment {
 
 
                 progressProfile.setVisibility(View.VISIBLE);
-                assetsService.updateUser(user).enqueue(new Callback<Void>() {
+                assetsService.updateUser(user).enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if(response.code() == 200) {
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if(response.code() == 200 && response.body().getStatus().isEmpty()) {
 
                                 Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
+                            newPassword.setText("");
+                            newPassword2.setText("");
+
+                        }
 
 
-                        } else {
+                        else if(!response.body().getStatus().isEmpty()){
+                            Toast.makeText(getContext(), response.body().getStatus(), Toast.LENGTH_SHORT).show();
+                            newPassword.setText("");
+                            newPassword.requestFocus();
+                            newPassword2.setText("");
+
+                        }
+
+                        else {
                             APIError apiError = ErrorUtils.parseError(response);
                             Toast.makeText(getContext(), apiError.message(), Toast.LENGTH_SHORT).show();
                         }
@@ -96,7 +108,7 @@ public class ProfileFragment extends BaseChildNestedFragment {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(Call<User> call, Throwable t) {
                         Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                         progressProfile.setVisibility(View.INVISIBLE);
 

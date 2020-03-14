@@ -37,7 +37,7 @@ public interface IAssetsService {
     Call<User> getUser();
 
     @PUT("/api/users/update/:id")
-    Call<Void> updateUser(@Body User user);
+    Call<User> updateUser(@Body User user);
 
     // =========================
 
