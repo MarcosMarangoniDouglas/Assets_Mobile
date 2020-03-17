@@ -82,26 +82,18 @@ public class ProfileFragment extends BaseChildNestedFragment {
                 assetsService.updateUser(user).enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.code() == 200 && response.body().getStatus().isEmpty()) {
+                        if(response.code() == 200) {
 
-                                Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
                             newPassword.setText("");
                             newPassword2.setText("");
-
                         }
-
-
-                        else if(!response.body().getStatus().isEmpty()){
-                            Toast.makeText(getContext(), response.body().getStatus(), Toast.LENGTH_SHORT).show();
-                            newPassword.setText("");
-                            newPassword.requestFocus();
-                            newPassword2.setText("");
-
-                        }
-
                         else {
                             APIError apiError = ErrorUtils.parseError(response);
                             Toast.makeText(getContext(), apiError.message(), Toast.LENGTH_SHORT).show();
+                            newPassword.setText("");
+                            newPassword2.setText("");
+                            newPassword.requestFocus();
                         }
                         progressProfile.setVisibility(View.INVISIBLE);
 
