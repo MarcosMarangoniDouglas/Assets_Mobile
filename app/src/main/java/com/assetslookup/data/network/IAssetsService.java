@@ -13,7 +13,9 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -32,6 +34,12 @@ public interface IAssetsService {
     @POST("/api/reset_password")
     Call<Void> resetPassword(@Body User user);
 
+    @GET("/api/users/read/:id")
+    Call<User> getUser();
+
+    @PUT("/api/users/update/:id")
+    Call<User> updateUser(@Body User user);
+
     // =========================
 
     // ASSETS ENDPOINTS
@@ -47,7 +55,10 @@ public interface IAssetsService {
     @POST("/api/assets")
     Call<Void> createAsset(@Body Asset asset);
 
-    @DELETE("/api/assets")
+    @PUT("/api/assets")
+    Call<Asset> updateAsset(@Body Asset asset);
+
+    @HTTP(method = "DELETE", path = "/api/assets", hasBody = true)
     Call<Void> deleteAsset(@Body Asset asset);
     // =========================
 }

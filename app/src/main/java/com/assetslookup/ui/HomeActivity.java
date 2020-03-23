@@ -17,7 +17,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     BottomNavigationView bottomNavigationView;
     BottomNavigatorManager bottomNavigatorManager;
-    FragmentManagerHelper fragmentManagerHelper;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +38,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
             case R.id.PROFILE:
                 bottomNavigatorManager.attach(ProfileContainerFragment.class);
-                //MUDAR A COR DO MENU ITEM
                 return true;
         }
         return false;

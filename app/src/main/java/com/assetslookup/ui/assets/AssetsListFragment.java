@@ -92,7 +92,7 @@ public class AssetsListFragment extends BaseChildNestedFragment
     });
   }
 
-  private void refreshAssets(){
+  public void refreshAssets(){
     progressAssets.setVisibility(View.VISIBLE);
     assetsService.getAllAssets().enqueue(new Callback<Assets>() {
       @Override
@@ -131,16 +131,24 @@ public class AssetsListFragment extends BaseChildNestedFragment
     // Edit - Call create fragment with the asset
     else if(message.what == 2) {
 
+      Asset asset = (Asset) message.obj;
+      //String test = "Andre";
+      Bundle bundle = new Bundle();
+      bundle.putSerializable("EDIT_ASSET",asset);
+
+      fragmentManagerHelper.attach(AssetsCreateFragment.class,bundle);
+
+
     }
     // Delete
     else if(message.what == 3) {
       Asset asset = (Asset) message.obj;
-      String assetId = asset.getId();
       assetsService.deleteAsset(asset).enqueue(new Callback<Void>() {
         @Override
         public void onResponse(Call<Void> call, Response<Void> response) {
           if(response.code() == 200) {
             Toast.makeText(getContext(), "Asset deleted", Toast.LENGTH_SHORT).show();
+            refreshAssets();
           } else {
             APIError apiError = ErrorUtils.parseError(response);
             Toast.makeText(getContext(), apiError.message(), Toast.LENGTH_SHORT).show();

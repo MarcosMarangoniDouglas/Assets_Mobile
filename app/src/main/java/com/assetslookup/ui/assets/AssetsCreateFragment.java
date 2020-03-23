@@ -28,6 +28,8 @@ import com.assetslookup.ui.shared.BaseChildNestedFragment;
 import com.assetslookup.ui.shared.CustomEditText;
 import com.assetslookup.ui.shared.DrawableClickListener;
 
+import java.text.DecimalFormat;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,9 +48,13 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
   Button btnCreateAsset;
   CheckBox checkPublicStock;
   ProgressBar assetCreateProgressBar;
+  Boolean isUpdate = false;
+  String idToUpdate;
+
 
   public AssetsCreateFragment() {
     // Required empty public constructor
+
   }
 
 
@@ -62,7 +68,7 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    toolbar.setTitle("CREATE ASSET");
+    //toolbar.setTitle("CREATE ASSET");
     editAssetName = view.findViewById(R.id.editAssetName);
 
     editQuoteName = view.findViewById(R.id.editQuoteName);
@@ -100,6 +106,39 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
     checkPublicStock = view.findViewById(R.id.checkPublicStock);
     checkPublicStock.setOnClickListener(this);
 
+
+
+    if(getArguments() != null) {
+      if (getArguments().getSerializable("EDIT_ASSET") != null) {
+        Asset asset = (Asset) getArguments().getSerializable("EDIT_ASSET");
+
+        editAssetName.setText(asset.getName());
+        editStockQuantity.setText(convertToFormat(asset.getBalance()));
+        editUnitPrice.setText(asset.getUnit().toString());
+        editStockLocation.setText(asset.getGroupA());
+        editStockSection.setText(asset.getGroupB());
+        editStockCategory.setText(asset.getGroupC());
+        btnCreateAsset.setText("U P D A T E  A S S E T");
+        isUpdate = true;
+        idToUpdate = asset.getId();
+
+        if(asset.getCode().length()!=0){
+          checkPublicStock.setChecked(true);
+          onRadioPublicStockClick(view);
+          editQuoteName.setText(asset.getCode());
+        }
+
+
+      }
+    }
+
+
+  }
+
+  DecimalFormat df = new DecimalFormat("#");
+  private String convertToFormat(double value){
+
+    return df.format(value);
   }
 
   @Override
@@ -147,28 +186,62 @@ public class AssetsCreateFragment extends BaseChildNestedFragment
     asset.setGroupC(stockSection);
 
     assetCreateProgressBar.setVisibility(View.VISIBLE);
-    assetsService.createAsset(asset).enqueue(new Callback<Void>() {
-      @Override
-      public void onResponse(Call<Void> call, Response<Void> response) {
-        if(response.code() == 200) {
-          Toast.makeText(getContext(), "Asset created successfully!", Toast.LENGTH_SHORT).show();
 
-          //Return to Assets Container
-          fragmentManagerHelper.attach(AssetsContainerFragment.class);
+    if(isUpdate){
+      asset.setId(idToUpdate);
 
-        } else {
-          APIError apiError = ErrorUtils.parseError(response);
-          Toast.makeText(getContext(), apiError.message(), Toast.LENGTH_SHORT).show();
+      assetsService.updateAsset(asset).enqueue(new Callback<Asset>() {
+        @Override
+        public void onResponse(Call<Asset> call, Response<Asset> response) {
+          if(response.code() == 200) {
+            Toast.makeText(getContext(), "Asset updated successfully!", Toast.LENGTH_SHORT).show();
+            //Return to Assets Container
+            fragmentManagerHelper.goBack();
+
+          } else {
+            APIError apiError = ErrorUtils.parseError(response);
+            Toast.makeText(getContext(), apiError.message(), Toast.LENGTH_SHORT).show();
+          }
+          assetCreateProgressBar.setVisibility(View.INVISIBLE);
         }
-        assetCreateProgressBar.setVisibility(View.INVISIBLE);
-      }
 
-      @Override
-      public void onFailure(Call<Void> call, Throwable t) {
-        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-        assetCreateProgressBar.setVisibility(View.INVISIBLE);
-      }
-    });
+        @Override
+        public void onFailure(Call<Asset> call, Throwable t) {
+          Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+          assetCreateProgressBar.setVisibility(View.INVISIBLE);
+        }
+      });
+
+
+
+    }
+
+
+    else{
+      assetsService.createAsset(asset).enqueue(new Callback<Void>() {
+        @Override
+        public void onResponse(Call<Void> call, Response<Void> response) {
+          if(response.code() == 200) {
+            Toast.makeText(getContext(), "Asset created successfully!", Toast.LENGTH_SHORT).show();
+            //Return to Assets Container
+            fragmentManagerHelper.goBack();
+
+          } else {
+            APIError apiError = ErrorUtils.parseError(response);
+            Toast.makeText(getContext(), apiError.message(), Toast.LENGTH_SHORT).show();
+          }
+          assetCreateProgressBar.setVisibility(View.INVISIBLE);
+        }
+
+        @Override
+        public void onFailure(Call<Void> call, Throwable t) {
+          Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+          assetCreateProgressBar.setVisibility(View.INVISIBLE);
+        }
+      });
+
+    }
+
   }
 
   private void onRadioPublicStockClick(View v) {

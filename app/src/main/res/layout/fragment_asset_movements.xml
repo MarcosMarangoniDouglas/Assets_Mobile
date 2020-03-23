@@ -44,37 +44,34 @@
     app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-    android:id="@+id/txtName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="16dp"
-    android:text="TSE Asset"
-    app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderName"
-    app:layout_constraintStart_toEndOf="@+id/txtPlaceholderName"
-    app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/txtName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="16dp"
+      app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderName"
+      app:layout_constraintStart_toEndOf="@+id/txtPlaceholderName"
+      app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-    android:id="@+id/txtCode"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="48dp"
-    android:text="TSE"
-    app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderCode"
-    app:layout_constraintStart_toEndOf="@+id/txtPlaceholderCode"
-    app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/txtCode"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="48dp"
+      app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderCode"
+      app:layout_constraintStart_toEndOf="@+id/txtPlaceholderCode"
+      app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-    android:id="@+id/txtBalance"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:text="CAD 10,322.12"
-    app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderBalance"
-    app:layout_constraintStart_toEndOf="@+id/txtPlaceholderBalance"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="1.0" />
+      android:id="@+id/txtBalance"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderBalance"
+      app:layout_constraintStart_toEndOf="@+id/txtPlaceholderBalance"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="1.0" />
 
   <ImageView
     android:id="@+id/imageView"

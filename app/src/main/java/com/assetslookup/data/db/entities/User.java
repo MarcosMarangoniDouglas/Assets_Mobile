@@ -24,6 +24,12 @@ public class User implements Serializable {
   @SerializedName("password")
   private String password;
 
+  @SerializedName("new_password1")
+  private String newPassword1;
+
+  @SerializedName("new_password2")
+  private String newPassword2;
+
   @SerializedName("first_name")
   private String firstName;
 
@@ -32,6 +38,7 @@ public class User implements Serializable {
 
   @SerializedName("forgot_password_token")
   private String forgotPasswordToken;
+
 
   @Ignore
   public User() { }
@@ -101,4 +108,21 @@ public class User implements Serializable {
   public void setForgotPasswordToken(String forgotPasswordToken) {
     this.forgotPasswordToken = forgotPasswordToken;
   }
+
+  public String getNewPassword2() {
+    return newPassword2;
+  }
+
+  public void setNewPassword2(String newPassword2) {
+    this.newPassword2 = newPassword2;
+  }
+
+  public String getNewPassword1() {
+    return newPassword1;
+  }
+
+  public void setNewPassword1(String newPassword1) {
+    this.newPassword1 = newPassword1;
+  }
+
 }

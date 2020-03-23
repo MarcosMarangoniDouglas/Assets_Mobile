@@ -79,6 +79,8 @@ public class FragmentManagerHelper {
         Fragment penultimateFragment = fragments.get(fragments.size() - 2);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.remove(lastFragment);
+        fragmentTransaction.detach(penultimateFragment);
+        fragmentTransaction.attach(penultimateFragment);
         fragmentTransaction.show(penultimateFragment);
         fragmentTransaction.commit();
         return true;

@@ -8,17 +8,17 @@
 
 
   <android.support.design.widget.FloatingActionButton
-    android:id="@+id/floatingBtnCreateAsset"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:backgroundTint="@color/colorAccent"
-    android:clickable="true"
-    android:focusable="true"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginEnd="20dp"
-    android:layout_marginBottom="20dp"
-    app:srcCompat="@drawable/ic_add_white_24dp" />
+      android:id="@+id/floatingBtnCreateAsset"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="20dp"
+      android:layout_marginBottom="20dp"
+      android:clickable="true"
+      android:focusable="true"
+      app:backgroundTint="@color/colorAccent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:srcCompat="@drawable/ic_add_white_24dp" />
 
   <ProgressBar
     android:id="@+id/progressAssets"
