@@ -9,8 +9,8 @@ import android.view.MenuItem;
 
 import com.assetslookup.R;
 import com.assetslookup.data.internal.BottomNavigatorManager;
-import com.assetslookup.data.internal.FragmentManagerHelper;
 import com.assetslookup.ui.assets.AssetsContainerFragment;
+import com.assetslookup.ui.goals.GoalsContainerFragment;
 import com.assetslookup.ui.profile.ProfileContainerFragment;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 bottomNavigatorManager.attach(AssetsContainerFragment.class);
                 return true;
             case R.id.GOALS:
+                bottomNavigatorManager.attach(GoalsContainerFragment.class);
                 return true;
             case R.id.PROFILE:
                 bottomNavigatorManager.attach(ProfileContainerFragment.class);

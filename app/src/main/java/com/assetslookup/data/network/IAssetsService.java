@@ -3,6 +3,8 @@ package com.assetslookup.data.network;
 
 import com.assetslookup.data.db.entities.Asset;
 import com.assetslookup.data.db.entities.Assets;
+import com.assetslookup.data.db.entities.Goal;
+import com.assetslookup.data.db.entities.Image;
 import com.assetslookup.data.db.entities.SearchQuote;
 import com.assetslookup.data.db.entities.Token;
 import com.assetslookup.data.db.entities.User;
@@ -60,5 +62,15 @@ public interface IAssetsService {
 
     @HTTP(method = "DELETE", path = "/api/assets", hasBody = true)
     Call<Void> deleteAsset(@Body Asset asset);
+    // =========================
+
+
+
+    // GOALS ENDPOINTS
+    @GET("/api/goals")
+    Call<List<Goal>> getAllGoals();
+
+    @POST("/api/goals/graph")
+    Call<Image> getGraph(@Body Goal goal);
     // =========================
 }
