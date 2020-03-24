@@ -1,5 +1,6 @@
 package com.assetslookup.ui.goals;
 
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +11,9 @@ import android.widget.TextView;
 
 import com.assetslookup.R;
 import com.assetslookup.data.db.entities.Goal;
+import com.assetslookup.data.internal.IFragmentInteraction;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalsListViewHolder> {
@@ -34,8 +36,21 @@ public class GoalListAdapter extends RecyclerView.Adapter<GoalListAdapter.GoalsL
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GoalsListViewHolder goalsListViewHolder, int i) {
+    public void onBindViewHolder(@NonNull GoalsListViewHolder goalsListViewHolder, final int i) {
         goalsListViewHolder.txtName.setText(goals.get(i).getName());
+        goalsListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMessage(1, goals.get(i));
+            }
+        });
+    }
+
+    private void sendMessage(int what, Object obj) {
+        Message m = new Message();
+        m.what = what;
+        m.obj = obj;
+        ((IFragmentInteraction)fragment).sendMessage(m);
     }
 
     @Override

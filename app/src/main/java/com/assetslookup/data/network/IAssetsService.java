@@ -70,6 +70,9 @@ public interface IAssetsService {
     @GET("/api/goals")
     Call<List<Goal>> getAllGoals();
 
+    @GET("/api/goals/{goalId}")
+    Call<Goal> getGoal(@Path("goalId") String goalId);
+
     @POST("/api/goals/graph")
     Call<Image> getGraph(@Body Goal goal);
     // =========================
