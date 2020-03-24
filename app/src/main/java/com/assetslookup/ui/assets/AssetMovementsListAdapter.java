@@ -73,9 +73,7 @@ public class AssetMovementsListAdapter extends RecyclerView.Adapter<AssetMovemen
       assetsListViewHolder.txtValue.setText(numberFormat.format(balance));
     }
 
-    if(comment != null) {
-      assetsListViewHolder.txtComment.setText(comment);
-    }
+
   }
 
   @Override
@@ -84,14 +82,14 @@ public class AssetMovementsListAdapter extends RecyclerView.Adapter<AssetMovemen
   }
 
   class AssetMovementsListViewHolder extends RecyclerView.ViewHolder {
-    TextView txtDate, txtKind, txtValue, txtComment;
+    TextView txtDate, txtKind, txtValue;
 
     public AssetMovementsListViewHolder(@NonNull View itemView) {
       super(itemView);
       txtDate = itemView.findViewById(R.id.txtDate);
       txtKind = itemView.findViewById(R.id.txtKind);
       txtValue = itemView.findViewById(R.id.txtValue);
-      txtComment = itemView.findViewById(R.id.txtComment);
+
     }
   }
 }

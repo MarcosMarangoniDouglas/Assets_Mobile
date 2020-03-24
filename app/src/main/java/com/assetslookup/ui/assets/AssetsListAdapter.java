@@ -1,6 +1,5 @@
 package com.assetslookup.ui.assets;
 
-import android.content.Context;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -8,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,7 +20,7 @@ import java.util.List;
 public class AssetsListAdapter extends RecyclerView.Adapter<AssetsListAdapter.AssetsListViewHolder> {
 
   private List<Asset> assets;
-  private NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+  private NumberFormat numberFormat = NumberFormat.getNumberInstance();
 
   private Fragment fragment;
 

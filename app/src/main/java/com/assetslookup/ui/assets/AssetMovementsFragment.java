@@ -1,16 +1,12 @@
 package com.assetslookup.ui.assets;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +22,7 @@ import com.assetslookup.data.internal.ErrorUtils;
 import com.assetslookup.data.internal.IFragmentInteraction;
 import com.assetslookup.ui.shared.BaseChildNestedFragment;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,10 +34,11 @@ public class AssetMovementsFragment extends BaseChildNestedFragment
   implements IFragmentInteraction {
 
   String assetId;
-
+  NumberFormat numberFormatCurreny = numberFormat.getCurrencyInstance();
   TextView txtName;
   TextView txtCode;
   TextView txtBalance;
+  TextView txtUnitPrice,txtTotal;
 
   SwipeRefreshLayout assetMovementsRefresh;
   RecyclerView assetMovementsList;
@@ -73,6 +71,8 @@ public class AssetMovementsFragment extends BaseChildNestedFragment
     txtName = view.findViewById(R.id.txtName);
     txtCode = view.findViewById(R.id.txtCode);
     txtBalance = view.findViewById(R.id.txtBalance);
+    txtUnitPrice =view.findViewById(R.id.txtUnitPriceM);
+    txtTotal = view.findViewById(R.id.txtTotalM);
 
     assetMovementsRefresh = view.findViewById(R.id.assetMovementsRefresh);
     assetMovementsRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -112,6 +112,21 @@ public class AssetMovementsFragment extends BaseChildNestedFragment
             } else {
               txtBalance.setText(numberFormat.format(0));
             }
+
+            if(asset.getUnit() != null){
+              txtUnitPrice.setText(numberFormatCurreny.format(asset.getUnit()));
+            }
+            else{
+              txtUnitPrice.setText(numberFormat.format(0));
+            }
+
+            if(asset.getUnit() != null && asset.getBalance() != null ){
+              txtTotal.setText( numberFormatCurreny.format(asset.getBalance() * asset.getUnit()));
+            }
+            else {
+              txtTotal.setText( numberFormatCurreny.format(0));
+            }
+
             movements.clear();
             movements.addAll(response.body().getMovements());
             assetMovementsListAdapter.notifyDataSetChanged();

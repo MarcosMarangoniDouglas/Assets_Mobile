@@ -11,6 +11,7 @@
     android:id="@+id/signUpToolBar"
     app:title="Sign up"
     style="@style/transparentToolbarTheme"
+      android:background="?attr/colorPrimary"
     app:titleTextAppearance="@style/whiteToolbarTitle"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
