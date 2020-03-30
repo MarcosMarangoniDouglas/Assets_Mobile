@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_margin="10dp"
+    app:cardElevation="6dp"
+    app:cardMaxElevation="15dp">
+
+    <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+          android:id="@+id/cardImgEditAsset"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:layout_marginTop="20dp"
+          android:shape="ring"
+          app:cardCornerRadius="15dp"
+          app:cardElevation="5dp"
+          app:layout_constraintEnd_toStartOf="@+id/guideline7"
+          app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+              android:id="@+id/btnEditAsset"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="2dp"
+              android:background="@android:color/transparent"
+              android:scaleType="fitXY"
+              app:srcCompat="@drawable/ic_edit_black_24dp" />
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+          android:id="@+id/cardImgDeleteAsset"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:layout_marginBottom="20dp"
+          android:padding="5dp"
+          android:shape="ring"
+          app:cardCornerRadius="15dp"
+          app:cardElevation="5dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@+id/guideline7">
+
+            <ImageButton
+              android:id="@+id/btnDeleteAsset"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="2dp"
+              android:background="@android:color/transparent"
+              android:scaleType="fitXY"
+              app:srcCompat="@drawable/ic_delete_black_24dp" />
+        </android.support.v7.widget.CardView>
+
+        <TextView
+          android:id="@+id/txtPlaceholderName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="48dp"
+          android:layout_marginTop="16dp"
+          android:fontFamily="@font/montserrat"
+          android:text="Name:"
+          android:textStyle="bold"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+          android:id="@+id/txtPlaceholderCode"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="48dp"
+          android:layout_marginTop="48dp"
+          android:fontFamily="@font/montserrat"
+          android:text="Code:"
+          android:textStyle="bold"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+          android:id="@+id/txtPlaceholderBalance"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="48dp"
+          android:layout_marginTop="80dp"
+          android:fontFamily="@font/montserrat"
+          android:text="Balance:"
+          android:textStyle="bold"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+          android:id="@+id/txtName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="16dp"
+          app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderName"
+          app:layout_constraintStart_toEndOf="@+id/txtPlaceholderName"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+          android:id="@+id/txtCode"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="48dp"
+          app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderCode"
+          app:layout_constraintStart_toEndOf="@+id/txtPlaceholderCode"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+          android:id="@+id/txtBalance"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderBalance"
+          app:layout_constraintStart_toEndOf="@+id/txtPlaceholderBalance"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.98" />
+
+        <ImageView
+          android:id="@+id/imageView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderName"
+          app:layout_constraintEnd_toStartOf="@+id/txtPlaceholderName"
+          app:layout_constraintStart_toStartOf="@+id/guideline6"
+          app:layout_constraintTop_toTopOf="@+id/txtPlaceholderName"
+          app:layout_constraintVertical_bias="1.0"
+          app:srcCompat="@drawable/ic_person_black_24dp_normal" />
+
+        <ImageView
+          android:id="@+id/imageView2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="4dp"
+          app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderCode"
+          app:layout_constraintEnd_toStartOf="@+id/txtPlaceholderCode"
+          app:layout_constraintStart_toStartOf="@+id/guideline6"
+          app:layout_constraintTop_toTopOf="@+id/txtPlaceholderCode"
+          app:layout_constraintVertical_bias="1.0"
+          app:srcCompat="@drawable/ic_box" />
+
+        <ImageView
+          android:id="@+id/imageView3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          app:layout_constraintBottom_toBottomOf="@+id/txtPlaceholderBalance"
+          app:layout_constraintEnd_toStartOf="@+id/txtPlaceholderBalance"
+          app:layout_constraintStart_toStartOf="@+id/guideline6"
+          app:layout_constraintTop_toTopOf="@+id/txtPlaceholderBalance"
+          app:layout_constraintVertical_bias="1.0"
+          app:srcCompat="@drawable/ic_description_black_24dp" />
+
+        <ImageView
+          android:id="@+id/imageView11"
+          android:layout_width="match_parent"
+          android:layout_height="2dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:srcCompat="@drawable/bordered_line_orange" />
+
+        <ImageView
+          android:id="@+id/imageView12"
+          android:layout_width="match_parent"
+          android:layout_height="2dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/bordered_line" />
+
+        <android.support.constraint.Guideline
+          android:id="@+id/guideline6"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          app:layout_constraintGuide_begin="10dp" />
+
+        <android.support.constraint.Guideline
+          android:id="@+id/guideline7"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="16dp"
+          android:orientation="vertical"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintGuide_begin="371dp"
+          app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

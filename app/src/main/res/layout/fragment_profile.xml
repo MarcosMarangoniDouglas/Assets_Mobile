@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutStockInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editFNameProfile"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/tvFirstName"
+            style="@style/loggedTextView"
+            android:text="F i r s t  N a m e"
+            app:layout_constraintBottom_toTopOf="@+id/editFNameProfile"
+            app:layout_constraintLeft_toLeftOf="@+id/editFNameProfile"
+
+            />
+
+        <EditText
+            android:id="@+id/editFNameProfile"
+            style="@style/loggedEditText"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="50dp"
+            tools:layout_editor_absoluteX="43dp" />
+
+        <ProgressBar
+            android:id="@+id/profileProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtLastName"
+            style="@style/loggedTextView"
+            android:text="L a s t  N a m e"
+            app:layout_constraintBottom_toTopOf="@+id/editLNameProfile"
+            app:layout_constraintStart_toStartOf="@+id/editLNameProfile" />
+
+        <EditText
+            android:id="@+id/editLNameProfile"
+            style="@style/loggedEditText"
+            android:layout_marginTop="32dp"
+            android:inputType="number|textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editFNameProfile" />
+
+        <TextView
+            android:id="@+id/txtReTypePassword"
+            style="@style/loggedTextView"
+            android:text="R e - T y p e  P a s s w o r d"
+            app:layout_constraintBottom_toTopOf="@+id/editReTypePasswordProfile"
+            app:layout_constraintStart_toStartOf="@+id/editReTypePasswordProfile" />
+
+        <EditText
+            android:id="@+id/editReTypePasswordProfile"
+            style="@style/loggedEditText"
+            android:layout_marginTop="32dp"
+            android:hint="@string/txtPassword"
+            android:inputType="textPersonName|textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editPasswordProfile" />
+
+        <TextView
+            android:id="@+id/txtEmailAddress"
+            style="@style/loggedTextView"
+            android:text="E m a i l  A d d r e s s"
+            app:layout_constraintBottom_toTopOf="@+id/editEmailAddProfile"
+            app:layout_constraintStart_toStartOf="@+id/editEmailAddProfile" />
+
+        <EditText
+            android:id="@+id/editEmailAddProfile"
+            style="@style/loggedEditText"
+            android:layout_marginTop="32dp"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editLNameProfile" />
+
+        <TextView
+            android:id="@+id/txtPassword"
+            style="@style/loggedTextView"
+            android:text="N e w  P a s s w o r d"
+            app:layout_constraintBottom_toTopOf="@+id/editPasswordProfile"
+            app:layout_constraintStart_toStartOf="@+id/editPasswordProfile" />
+
+        <EditText
+            android:id="@+id/editPasswordProfile"
+            style="@style/loggedEditText"
+            android:layout_marginTop="32dp"
+            android:hint="@string/txtPassword"
+            android:inputType="textPersonName|textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editEmailAddProfile" />
+
+
+        <Button
+            android:id="@+id/btnUpdateProfile"
+            style="@style/loggedButton"
+            android:layout_marginTop="40dp"
+            android:text="U P D A T E"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editReTypePasswordProfile" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+</ScrollView>

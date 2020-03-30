@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">AssetsLookUP</string>
+    <string name="storeimg">StoreImg</string>
+    <string name="signInHeaderTitle">ASSETS</string>
+    <string name="signInHeaderSubtitle">L O O K&#160;&#160;U P !</string>
+    <string name="txtUsername">U s e r n a m e</string>
+    <string name="txtPassword">P a s s w o r d</string>
+    <string name="btnSignIn">S I G N&#160;&#160;I N</string>
+    <string name="btnSignUp">S I G N&#160;&#160;U P</string>
+    <string name="txtRepeatPassword">R e p e a t&#160;&#160;P a s s w o r d</string>
+    <string name="txtFirstName">F i r s t&#160;&#160;N a m e</string>
+    <string name="txtLastName">L a s t&#160;&#160;N a m e</string>
+    <string name="btnForgotPassword">S E N D&#160;&#160;E M A I L</string>
+    <string name="btnMenuForgotPassword">F O R G O T&#160;&#160;P A S S W O R D</string>
+    <string name="products_menu">Products</string>
+    <string name="users_menu">Users</string>
+    <string name="home_menu">Home</string>
+
+
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">CANCEL</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

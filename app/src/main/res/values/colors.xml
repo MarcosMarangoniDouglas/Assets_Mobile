@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#222324</color>
+    <color name="colorAccentDark">#15181A</color>
+    <color name="colorPrimary">#F15A23</color>
+    <color name="colorPrimaryDark">#F15A23</color>
+    <color name="colorGradient1">#ff9068</color>
+    <color name="colorGradient2">#ff4b1f</color>
+    <color name="darkGray">#A9A9A9</color>
+    <color name="colorToolbarBackground">#348D60</color>
+</resources>

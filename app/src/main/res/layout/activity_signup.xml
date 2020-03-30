@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.SignUpActivity"
+    android:background="#333A40">
+
+  <android.support.v7.widget.Toolbar
+    android:id="@+id/signUpToolBar"
+    app:title="Sign up"
+    style="@style/transparentToolbarTheme"
+      android:background="?attr/colorPrimary"
+    app:titleTextAppearance="@style/whiteToolbarTitle"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:navigationIcon="@drawable/ic_arrow_back_black_24dp" />
+
+  <android.support.constraint.Guideline
+    android:id="@+id/fieldsGuideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.16" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="100dp" />
+
+    <TextView
+        android:id="@+id/txtFirstName"
+        style="@style/loginTextView"
+        android:text="@string/txtFirstName"
+        app:layout_constraintBottom_toTopOf="@+id/editFirstName"
+        app:layout_constraintStart_toStartOf="@+id/editFirstName" />
+
+    <EditText
+        android:id="@+id/editFirstName"
+        style="@style/loginEditText"
+        android:drawableStart="@drawable/name_white_clipart"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
+
+    <TextView
+        android:id="@+id/txtLastName"
+        style="@style/loginTextView"
+        android:text="@string/txtLastName"
+        app:layout_constraintBottom_toTopOf="@+id/editLastName"
+        app:layout_constraintStart_toStartOf="@+id/editLastName" />
+
+    <EditText
+        android:id="@+id/editLastName"
+        style="@style/loginEditText"
+        android:layout_marginTop="84dp"
+        android:drawableStart="@drawable/name_white_clipart"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
+
+    <TextView
+        android:id="@+id/txtUsername"
+        style="@style/loginTextView"
+        android:text="@string/txtUsername"
+        app:layout_constraintBottom_toTopOf="@+id/editUsername"
+        app:layout_constraintStart_toStartOf="@+id/editUsername" />
+
+    <EditText
+        android:id="@+id/editUsername"
+        style="@style/loginEditText"
+        android:layout_marginTop="172dp"
+        android:drawableStart="@drawable/email_white_clipart"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
+
+    <TextView
+        android:id="@+id/txtPassword"
+        style="@style/loginTextView"
+        android:text="@string/txtPassword"
+        app:layout_constraintBottom_toTopOf="@+id/editPassword"
+        app:layout_constraintStart_toStartOf="@+id/editPassword" />
+
+
+    <com.assetslookup.ui.shared.PasswordEditText
+        android:id="@+id/editPassword"
+        style="@style/loginEditText"
+        android:layout_marginTop="256dp"
+        android:drawableLeft="@drawable/hide_password_clipart"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        style="@style/loginButton"
+        android:text="@string/btnSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+  <android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.assets.AssetsCreateFragment">
+
+    <ProgressBar
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/assetCreateProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.constraint.Guideline
+      android:id="@+id/guideline"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintGuide_begin="0dp"
+      app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+      android:id="@+id/txtAssetName"
+      style="@style/loggedTextView"
+      android:text="A s s e t   N a m e"
+      app:layout_constraintBottom_toTopOf="@+id/editAssetName"
+      app:layout_constraintStart_toStartOf="@+id/editAssetName" />
+
+    <EditText
+      style="@style/loggedEditText"
+      android:id="@+id/editAssetName"
+      android:layout_marginTop="36dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.502"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <CheckBox
+      android:id="@+id/checkPublicStock"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="96dp"
+      android:text="Is this a public stock?"
+      style="@style/loggedTextView"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <android.support.constraint.Guideline
+      android:id="@+id/guideline2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_begin="128dp" />
+
+    <android.support.constraint.ConstraintLayout
+      android:id="@+id/layoutPublicStock"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/guideline2"
+      android:visibility="gone">
+
+      <TextView
+        android:id="@+id/txtQuoteName"
+        style="@style/loggedTextView"
+        android:text="Q u o t e  N a m e"
+        app:layout_constraintBottom_toTopOf="@+id/editQuoteName"
+        app:layout_constraintStart_toStartOf="@+id/editQuoteName" />
+
+      <com.assetslookup.ui.shared.CustomEditText
+        android:id="@+id/editQuoteName"
+        style="@style/loggedEditText"
+        android:drawableRight="@drawable/ic_search_black_24dp"
+        android:layout_marginTop="30dp"
+        android:inputType="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+      android:id="@+id/layoutStockInput"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/guideline2"
+      app:layout_constraintVertical_bias="0.0"
+      android:paddingBottom="20dp">
+
+      <TextView
+        android:id="@+id/txtStockQuantity"
+        style="@style/loggedTextView"
+        android:text="Q u a n t i t y  o f  S t o c k s"
+        app:layout_constraintBottom_toTopOf="@+id/editStockQuantity"
+        app:layout_constraintStart_toStartOf="@+id/editStockQuantity" />
+
+      <EditText
+          android:id="@+id/editStockQuantity"
+          style="@style/loggedEditText"
+          android:layout_marginTop="30dp"
+          android:inputType="number|textPersonName"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+        android:id="@+id/txtUnitPrice"
+        style="@style/loggedTextView"
+        android:text="U n i t  P r i c e"
+        app:layout_constraintBottom_toTopOf="@+id/editUnitPrice"
+        app:layout_constraintStart_toStartOf="@+id/editUnitPrice" />
+
+      <EditText
+          android:id="@+id/editUnitPrice"
+          style="@style/loggedEditText"
+          android:layout_marginTop="120dp"
+          android:inputType="textPersonName|numberDecimal"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+        android:id="@+id/txtStockLocation"
+        android:text="S t o c k  L o c a t i o n"
+        style="@style/loggedTextView"
+        app:layout_constraintBottom_toTopOf="@+id/editStockLocation"
+        app:layout_constraintStart_toStartOf="@+id/editStockLocation" />
+
+      <EditText
+        android:id="@+id/editStockLocation"
+        style="@style/loggedEditText"
+        android:layout_marginTop="210dp"
+        android:hint="Brazil, New York..."
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+        android:id="@+id/txtStockSection"
+        style="@style/loggedTextView"
+        android:text="S t o c k  S e c t i o n"
+        app:layout_constraintBottom_toTopOf="@+id/editStockSection"
+        app:layout_constraintStart_toStartOf="@+id/editStockSection" />
+
+      <EditText
+        android:id="@+id/editStockSection"
+        style="@style/loggedEditText"
+        android:layout_marginTop="300dp"
+        android:hint="Cars, Real State ..."
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+        android:id="@+id/txtStockCategory"
+        style="@style/loggedTextView"
+        android:text="S t o c k  C a t e g o r y"
+        app:layout_constraintBottom_toTopOf="@+id/editStockCategory"
+        app:layout_constraintStart_toStartOf="@+id/editStockCategory" />
+
+      <EditText
+        android:id="@+id/editStockCategory"
+        style="@style/loggedEditText"
+        android:layout_marginTop="390dp"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <Button
+        android:id="@+id/btnCreateAsset"
+        style="@style/loggedButton"
+        android:layout_marginTop="468dp"
+        android:text="C R E A T E  A S S E T"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+  </android.support.constraint.ConstraintLayout>
+</ScrollView>
